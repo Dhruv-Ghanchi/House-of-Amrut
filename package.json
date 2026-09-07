@@ -2,6 +2,7 @@
   "name": "house-of-amrut",
   "private": true,
   "version": "0.0.0",
+  "author": "Dhruv Ghanchi",
   "type": "module",
   "scripts": {
     "dev": "vite",

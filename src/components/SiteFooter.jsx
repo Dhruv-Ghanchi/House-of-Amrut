@@ -82,9 +82,14 @@ export default function SiteFooter() {
         <div className="gold-divider mt-14 mb-6" />
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-body text-[11px] tracking-luxe-sm text-muted-gold/70 uppercase">
-            © 2024 House of Amrut. All Rights Reserved.
-          </p>
+          <div className="flex flex-col items-center sm:items-start gap-1">
+            <p className="font-body text-[11px] tracking-luxe-sm text-muted-gold/70 uppercase">
+              © 2024 House of Amrut. All Rights Reserved.
+            </p>
+            <p className="font-body text-[9px] tracking-luxe-sm text-muted-gold/40 uppercase">
+              Designed by Dhruv Ghanchi.
+            </p>
+          </div>
           <p className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold/50">
             Few Find It. Fewer Own The Night.
           </p>
