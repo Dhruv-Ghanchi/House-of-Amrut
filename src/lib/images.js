@@ -29,6 +29,6 @@ export const IMAGES = {
 
 // Background video loops (muted, autoplay). Poster falls back to heroPoster.
 export const VIDEOS = {
-  hero: "/videos/hero.mp4",     // 16s seamless interior dolly
-  barAlt: "/videos/hero-bar.mp4", // 4s empty-bar alternate
+  hero: "/videos/hero.mp4",          // 30s cinematic whiskey pour, smoke on black
+  heroAlt: "/videos/hero-people.mp4", // bartender building Old Fashioneds
 };
