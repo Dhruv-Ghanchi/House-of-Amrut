@@ -19,4 +19,12 @@ export const IMAGES = {
   loungeInterior: "/images/3a9f0f174_generated_758c0393.jpg",
   privateBooth: "/images/8d89b92c7_generated_55e6b91e.jpg",
   bottlePlinth: "/images/26b9fcafc_generated_ab526c00.jpg",
+
+  heroPoster: "/images/hero-poster.jpg",
+};
+
+// Background video loops (muted, autoplay). Poster falls back to heroPoster.
+export const VIDEOS = {
+  hero: "/videos/hero.mp4",       // 16s seamless interior dolly
+  heroBar: "/videos/hero-bar.mp4", // 4s empty-bar alternate
 };

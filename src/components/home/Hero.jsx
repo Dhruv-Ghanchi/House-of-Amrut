@@ -1,18 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { IMAGES } from "@/lib/images";
+import { motion, useReducedMotion } from "framer-motion";
+import { IMAGES, VIDEOS } from "@/lib/images";
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="relative h-screen min-h-[680px] w-full overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <img
-          src={IMAGES.heroBar}
-          alt="Dimly lit luxury Amrut whisky bar"
-          className="h-full w-full object-cover"
-        />
+        {reduceMotion ? (
+          <img
+            src={IMAGES.heroPoster}
+            alt="Dimly lit luxury Amrut whisky bar"
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <video
+            className="h-full w-full object-cover"
+            src={VIDEOS.hero}
+            poster={IMAGES.heroPoster}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-onyx/70 via-onyx/40 to-onyx" />
         <div className="absolute inset-0 bg-gradient-to-t from-onyx via-transparent to-onyx/60" />
       </div>
