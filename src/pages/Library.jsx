@@ -146,7 +146,7 @@ export default function Library() {
               Pour By The Dram
             </h2>
             <p className="font-body text-base text-champagne/65 leading-relaxed mb-8 max-w-md">
-              Certain bottles never leave the shelf — they are too rare, too singular, too storied.
+              Certain bottles never leave the shelf. They are too rare, too singular, too storied.
               At House of Amrut, these allocations are opened exclusively for pour-by-the-dram,
               measured by the sommelier for those who ask.
             </p>

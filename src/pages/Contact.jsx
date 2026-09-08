@@ -5,7 +5,7 @@ import { IMAGES } from "@/lib/images";
 import { ChevronDown, Clock, MapPin, Phone, User } from "lucide-react";
 
 const FAQ = [
-  { q: "What is the dress code?", a: "Smart elegant. We ask guests to honour the house — no sportswear or open footwear after 8 PM." },
+  { q: "What is the dress code?", a: "Smart elegant. We ask guests to honour the house. No sportswear or open footwear after 8 PM." },
   { q: "Is there an age restriction?", a: "Yes. The House is strictly 21 and above. Valid identification is required at entry." },
   { q: "What is the cancellation policy?", a: "Reservations may be modified or cancelled up to 24 hours prior. Within 24 hours, a 50% hold applies to the booking." },
   { q: "Is valet available?", a: "Complimentary valet is offered for all reserved guests from 6 PM onward at the main entrance." },
@@ -32,7 +32,7 @@ export default function Contact() {
         image={IMAGES.contactHero}
         eyebrow="Contact"
         title="Get In Touch"
-        subtitle="Mumbai, India"
+        subtitle="Jersey City, New Jersey"
       />
 
       {/* Split screen */}
@@ -48,14 +48,14 @@ export default function Contact() {
                 <MapPin size={18} className="text-gold mt-1 shrink-0" />
                 <div>
                   <p className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold mb-1">Address</p>
-                  <p className="font-body text-sm text-champagne/80">12 Marine Drive, Nariman Point, Mumbai 400021, India</p>
+                  <p className="font-body text-sm text-champagne/80">BLJC, 136 Newark Avenue, Jersey City, NJ 07302</p>
                 </div>
               </div>
               <div className="flex gap-4">
                 <Clock size={18} className="text-gold mt-1 shrink-0" />
                 <div>
                   <p className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold mb-1">Hours</p>
-                  <p className="font-body text-sm text-champagne/80">Tue – Sun · 6:00 PM to 1:00 AM</p>
+                  <p className="font-body text-sm text-champagne/80">Tuesday to Sunday · 6:00 PM to 1:00 AM</p>
                   <p className="font-body text-sm text-champagne/60">Closed Mondays</p>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export default function Contact() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <MapPin size={28} className="text-gold mx-auto mb-3" />
-                  <p className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold">Mumbai, India</p>
+                  <p className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold">Jersey City, NJ</p>
                 </div>
               </div>
               <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(rgba(197,160,89,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.3) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />

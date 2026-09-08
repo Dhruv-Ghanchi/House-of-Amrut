@@ -80,7 +80,7 @@ export default function SiteHeader() {
               to="/contact"
               className="font-heading text-[10px] uppercase tracking-luxe text-gold border border-gold-strong px-5 py-2.5 hover:bg-gold hover:text-onyx transition-all duration-500"
             >
-              Reserve Your Experience
+              Reserve Your Table
             </Link>
           </div>
 
@@ -117,7 +117,7 @@ export default function SiteHeader() {
               to="/contact"
               className="mt-2 inline-block font-heading text-[10px] uppercase tracking-luxe text-gold border border-gold-strong px-5 py-3 text-center"
             >
-              Reserve Your Experience
+              Reserve Your Table
             </Link>
           </nav>
         </div>

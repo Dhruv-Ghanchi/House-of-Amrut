@@ -20,16 +20,16 @@ const MENU = {
     { name: "Amrut Naarangi", notes: "Orange · Oak · Spice", abv: "40%", price: "₹1,250 / dram" },
   ],
   "Vintage Flight Collections": [
-    { name: "Founders Reserve Flight", notes: "3 × 15ml · House Lineage", abv: "—", price: "₹3,800" },
-    { name: "Ex-Bourbon Cask Flight", notes: "3 × 15ml · Vanilla Forward", abv: "—", price: "₹4,200" },
-    { name: "Sherry Cask Flight", notes: "3 × 15ml · Dark Fruit", abv: "—", price: "₹4,800" },
-    { name: "Cask Strength Flight", notes: "3 × 15ml · Untamed", abv: "—", price: "₹5,400" },
+    { name: "Founders Reserve Flight", notes: "3 × 15ml · House Lineage", abv: "", price: "₹3,800" },
+    { name: "Ex-Bourbon Cask Flight", notes: "3 × 15ml · Vanilla Forward", abv: "", price: "₹4,200" },
+    { name: "Sherry Cask Flight", notes: "3 × 15ml · Dark Fruit", abv: "", price: "₹4,800" },
+    { name: "Cask Strength Flight", notes: "3 × 15ml · Untamed", abv: "", price: "₹5,400" },
   ],
   "Small Bites": [
-    { name: "Truffle Bhelpuri", notes: "Black Truffle · Puffed Rice", abv: "—", price: "₹650" },
-    { name: "Malai Tikka Skewers", notes: "Charcoal · Cream · Saffron", abv: "—", price: "₹780" },
-    { name: "Goan Sausage Toast", notes: "Smoked · Vinegar · Chili", abv: "—", price: "₹720" },
-    { name: "Dark Chocolate & Cask", notes: "70% Cacao · Oak-aged Cream", abv: "—", price: "₹590" },
+    { name: "Truffle Bhelpuri", notes: "Black Truffle · Puffed Rice", abv: "", price: "₹650" },
+    { name: "Malai Tikka Skewers", notes: "Charcoal · Cream · Saffron", abv: "", price: "₹780" },
+    { name: "Goan Sausage Toast", notes: "Smoked · Vinegar · Chili", abv: "", price: "₹720" },
+    { name: "Dark Chocolate & Cask", notes: "70% Cacao · Oak-aged Cream", abv: "", price: "₹590" },
   ],
 };
 

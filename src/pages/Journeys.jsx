@@ -7,7 +7,7 @@ import { IMAGES } from "@/lib/images";
 const JOURNEYS = [
   {
     name: "The Innovators",
-    desc: "Exploring pioneering wood finishes — ex-bourbon, ex-sherry, and the experimental casks that rewrote what Indian malt could be.",
+    desc: "Exploring pioneering wood finishes: ex-bourbon, ex-sherry, and the experimental casks that rewrote what Indian malt could be.",
     duration: "60 min",
     pours: "4 × 15ml",
     price: "₹4,500 / person",
@@ -20,7 +20,7 @@ const JOURNEYS = [
   },
   {
     name: "The Angel's Share",
-    desc: "A focus on rapid tropical maturation — how heat, humidity and time compress decades of flavour into a few intense years.",
+    desc: "A focus on rapid tropical maturation, and how heat, humidity and time compress decades of flavour into a few intense years.",
     duration: "60 min",
     pours: "4 × 15ml",
     price: "₹5,200 / person",
@@ -33,7 +33,7 @@ const JOURNEYS = [
   },
   {
     name: "Land & Time",
-    desc: "A terroir-focused flight tracing Indian barley origins — from the northern plains to the southern coast, in four glasses.",
+    desc: "A terroir-focused flight tracing Indian barley origins, from the northern plains to the southern coast, in four glasses.",
     duration: "60 min",
     pours: "4 × 15ml",
     price: "₹4,800 / person",
@@ -45,7 +45,7 @@ const JOURNEYS = [
   },
   {
     name: "The Rare & Exceptional",
-    desc: "Poured from cask-strength and limited allocations — bottles that exist in handfuls, opened only for those who journey here.",
+    desc: "Poured from cask-strength and limited allocations: bottles that exist in handfuls, opened only for those who journey here.",
     duration: "75 min",
     pours: "4 × 15ml",
     price: "₹7,500 / person",
@@ -62,6 +62,7 @@ export default function Journeys() {
     <>
       <PageHero
         image={IMAGES.journeysHero}
+        imgPosition="50% 38%"
         eyebrow="Journeys"
         title="Curated Journeys"
         subtitle="Four guided tasting flights, narrated by the sommelier."
@@ -115,7 +116,7 @@ export default function Journeys() {
       <section className="py-24 bg-onyx border-t border-gold/10">
         <Reveal className="mx-auto max-w-luxe px-6 text-center">
           <p className="font-display italic text-2xl sm:text-3xl text-champagne/85 max-w-3xl mx-auto leading-relaxed">
-            "Each journey is guided — the sommelier pours, and the story follows. You are not
+            "Each journey is guided. The sommelier pours, and the story follows. You are not
             drinking; you are listening."
           </p>
         </Reveal>

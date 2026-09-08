@@ -16,7 +16,7 @@ export default function TablesideBanner() {
           <div className="absolute inset-0 flex items-end p-10">
             <div>
               <span className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold block mb-3">
-                01 — Pour
+                01 · Pour
               </span>
               <h3 className="font-heading uppercase tracking-luxe text-champagne text-2xl sm:text-3xl">
                 The Tasting Cart
@@ -35,7 +35,7 @@ export default function TablesideBanner() {
           <div className="absolute inset-0 flex items-end p-10">
             <div>
               <span className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold block mb-3">
-                02 — Craft
+                02 · Craft
               </span>
               <h3 className="font-heading uppercase tracking-luxe text-champagne text-2xl sm:text-3xl">
                 Tableside Theatre

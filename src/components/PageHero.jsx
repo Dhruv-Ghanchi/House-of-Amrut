@@ -1,11 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function PageHero({ image, eyebrow, title, subtitle }) {
+export default function PageHero({ image, eyebrow, title, subtitle, imgPosition = "center" }) {
   return (
     <section className="relative h-[70vh] min-h-[520px] w-full overflow-hidden">
       <div className="absolute inset-0">
-        <img src={image} alt={title} className="h-full w-full object-cover" />
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover"
+          style={{ objectPosition: imgPosition }}
+        />
         <div className="absolute inset-0 bg-onyx/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-onyx/50" />
       </div>

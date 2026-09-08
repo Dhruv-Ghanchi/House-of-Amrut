@@ -15,7 +15,7 @@ const PILLARS = [
   },
   {
     title: "Artisan Blending",
-    desc: "Casks selected by hand and married with intent — each release a composition, never a formula.",
+    desc: "Casks selected by hand and married with intent. Each release a composition, never a formula.",
   },
 ];
 
@@ -23,7 +23,7 @@ const GALLERY = [
   { img: IMAGES.loungeInterior, label: "The Lounge" },
   { img: IMAGES.privateBooth, label: "Private Booths" },
   { img: IMAGES.heroBar, label: "The Bar" },
-  { img: IMAGES.libraryHero, label: "The Library" },
+  { img: IMAGES.libraryTile, label: "The Library" },
 ];
 
 export default function TheHouse() {
@@ -57,7 +57,7 @@ export default function TheHouse() {
                 thought impossible to craft in the tropics.
               </p>
               <p>
-                House of Amrut is its sanctuary — a place where that legacy is not merely stored but
+                House of Amrut is its sanctuary, a place where that legacy is not merely stored but
                 poured, studied and celebrated. Every bottle on these shelves carries the weight of
                 an unlikely triumph.
               </p>

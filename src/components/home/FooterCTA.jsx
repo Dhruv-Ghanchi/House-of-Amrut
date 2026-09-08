@@ -22,7 +22,7 @@ export default function FooterCTA() {
               to="/contact"
               className="group relative inline-flex items-center justify-center px-10 py-4 font-heading text-[11px] uppercase tracking-luxe text-gold border border-gold-strong transition-all duration-500 hover:bg-gold hover:text-onyx hover:glow-amber"
             >
-              <span className="relative z-10">Reserve Your Experience</span>
+              <span className="relative z-10">Reserve Your Table</span>
             </Link>
           </div>
         </Reveal>

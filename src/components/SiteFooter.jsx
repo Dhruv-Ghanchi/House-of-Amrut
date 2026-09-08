@@ -65,7 +65,7 @@ export default function SiteFooter() {
             </p>
             <div className="flex items-start gap-2 text-champagne/70 font-body text-sm">
               <MapPin size={14} className="text-gold mt-1" />
-              <span>Mumbai, India</span>
+              <span>136 Newark Avenue, Jersey City, NJ 07302</span>
             </div>
             <a
               href="https://instagram.com"

@@ -21,7 +21,7 @@ export default function RegionalPairings() {
             From India, With Intent.
           </h2>
           <p className="font-body text-base text-champagne/60 mt-6 max-w-xl mx-auto leading-relaxed">
-            Regional plates composed to converse with the spirit — a map of India, told in four
+            Regional plates composed to converse with the spirit. A map of India, told in four
             courses.
           </p>
         </Reveal>

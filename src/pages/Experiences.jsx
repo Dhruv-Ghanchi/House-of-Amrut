@@ -9,21 +9,21 @@ const PILLARS = [
   {
     name: "Classic",
     duration: "60 min",
-    group: "1–4 guests",
+    group: "1-4 guests",
     tier: "₹₹",
     desc: "Familiar, through an Amrut lens. A guided flight of house expressions served neat, with still water and a brief on each pour's origin.",
   },
   {
     name: "Contemporary",
     duration: "75 min",
-    group: "1–6 guests",
+    group: "1-6 guests",
     tier: "₹₹₹",
-    desc: "Classics reinterpreted. Our mixologists rebuild the canon — Old Fashioned, Manhattan, Sour — around Amrut's single malts, tableside.",
+    desc: "Classics reinterpreted. Our mixologists rebuild the canon of the Old Fashioned, Manhattan and Sour around Amrut's single malts, tableside.",
   },
   {
     name: "Signature",
     duration: "90 min",
-    group: "1–8 guests",
+    group: "1-8 guests",
     tier: "₹₹₹₹",
     desc: "The spirit of India. Rare allocations paired with regional plates, narrated by the sommelier from the Tasting Cart.",
   },
@@ -36,6 +36,7 @@ export default function Experiences() {
     <>
       <PageHero
         image={IMAGES.experiencesHero}
+        imgPosition="50% 35%"
         eyebrow="Experiences"
         title="Experiences"
         subtitle="Curated evenings, composed pour by pour."
@@ -110,7 +111,7 @@ export default function Experiences() {
               </h2>
               <p className="font-body text-base text-champagne/65 leading-relaxed mb-8 max-w-md">
                 A private experience where the mixologist wheels the cart to your booth and composes
-                each cocktail in the glow of candlelight — bitters measured by eye, ice cut by hand,
+                each cocktail in the glow of candlelight. Bitters measured by eye, ice cut by hand,
                 every gesture part of the performance.
               </p>
               <Link
@@ -146,7 +147,7 @@ export default function Experiences() {
             </Link>
           </Reveal>
           <Reveal delay={0.15} className="order-1 lg:order-2 relative aspect-[4/3] overflow-hidden">
-            <img src={IMAGES.privateBooth} alt="Private booth" className="h-full w-full object-cover" />
+            <img src={IMAGES.privateDining} alt="Private booth" className="h-full w-full object-cover" />
             <div className="absolute inset-0 border border-gold/20 m-3 pointer-events-none" />
           </Reveal>
         </div>
