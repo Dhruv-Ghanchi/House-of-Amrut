@@ -29,19 +29,19 @@ export default function Hero() {
             aria-hidden="true"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-onyx/70 via-onyx/40 to-onyx" />
-        <div className="absolute inset-0 bg-gradient-to-t from-onyx via-transparent to-onyx/60" />
-        {/* Cinematic vignette — feathers the footage into the onyx frame */}
+        <div className="absolute inset-0 bg-gradient-to-b from-onyx/60 via-transparent to-onyx/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-onyx/45 via-transparent to-onyx/25" />
+        {/* Cinematic vignette — a light feather into the onyx frame */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(130% 115% at 50% 42%, transparent 38%, rgba(8,8,8,0.5) 74%, rgba(8,8,8,0.92) 100%)",
+              "radial-gradient(135% 120% at 50% 48%, transparent 52%, rgba(8,8,8,0.32) 82%, rgba(8,8,8,0.6) 100%)",
           }}
         />
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ boxShadow: "inset 0 0 140px 24px rgba(8,8,8,0.75)" }}
+          style={{ boxShadow: "inset 0 0 110px 8px rgba(8,8,8,0.42)" }}
         />
       </div>
 
