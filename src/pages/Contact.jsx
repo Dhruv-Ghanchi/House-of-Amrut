@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PageHero from "@/components/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { IMAGES } from "@/lib/images";
-import { ChevronDown, Clock, MapPin, Phone, User } from "lucide-react";
+import { ChevronDown, Clock, MapPin, User } from "lucide-react";
 
 const FAQ = [
   { q: "What is the dress code?", a: "Smart elegant. We ask guests to honour the house. No sportswear or open footwear after 8 PM." },
@@ -60,13 +60,6 @@ export default function Contact() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <Phone size={18} className="text-gold mt-1 shrink-0" />
-                <div>
-                  <p className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold mb-1">Reservations</p>
-                  <p className="font-body text-sm text-champagne/80">+91 22 0000 1200</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
                 <User size={18} className="text-gold mt-1 shrink-0" />
                 <div>
                   <p className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold mb-1">Dress Code</p>
@@ -104,7 +97,7 @@ export default function Contact() {
                   <div><label className={label}>Email</label><input required type="email" value={form.email} onChange={set("email")} placeholder="you@email.com" className={field} /></div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div><label className={label}>Phone Number</label><input value={form.phone} onChange={set("phone")} placeholder="+91 …" className={field} /></div>
+                  <div><label className={label}>Phone Number</label><input value={form.phone} onChange={set("phone")} placeholder="Best number to reach you" className={field} /></div>
                   <div>
                     <label className={label}>Party Size</label>
                     <select value={form.party} onChange={set("party")} className={field + " appearance-none"}>
