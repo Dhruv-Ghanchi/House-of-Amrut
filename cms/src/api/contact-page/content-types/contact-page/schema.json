@@ -1,0 +1,86 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_page",
+  "info": {
+    "singularName": "contact-page",
+    "pluralName": "contact-pages",
+    "displayName": "Contact Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "infoLabel": {
+      "type": "string"
+    },
+    "addressLabel": { "type": "string" },
+    "hoursLabel": { "type": "string" },
+    "dressCodeLabel": { "type": "string" },
+    "mapPlaceholderLabel": { "type": "string" },
+    "selectPlaceholder": { "type": "string" },
+    "faqTitle": {
+      "type": "string"
+    },
+    "faq": {
+      "type": "component",
+      "component": "shared.faq-item",
+      "repeatable": true
+    },
+    "formTitle": {
+      "type": "string"
+    },
+    "nameLabel": { "type": "string" },
+    "namePlaceholder": { "type": "string" },
+    "emailLabel": { "type": "string" },
+    "emailPlaceholder": { "type": "string" },
+    "phoneLabel": { "type": "string" },
+    "phonePlaceholder": { "type": "string" },
+    "partySizeLabel": { "type": "string" },
+    "partySizeOptions": {
+      "type": "component",
+      "component": "shared.option",
+      "repeatable": true
+    },
+    "dateLabel": { "type": "string" },
+    "dateOptions": {
+      "type": "component",
+      "component": "shared.option",
+      "repeatable": true
+    },
+    "timeLabel": { "type": "string" },
+    "experienceLabel": { "type": "string" },
+    "experienceOptions": {
+      "type": "component",
+      "component": "shared.option",
+      "repeatable": true
+    },
+    "notesLabel": { "type": "string" },
+    "notesPlaceholder": { "type": "string" },
+    "submitLabel": { "type": "string" },
+    "successTitle": { "type": "string" },
+    "successMessage": { "type": "text" },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

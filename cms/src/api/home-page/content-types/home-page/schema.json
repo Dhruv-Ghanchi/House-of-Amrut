@@ -1,0 +1,128 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_page",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroCtaLabel": {
+      "type": "string"
+    },
+    "heroVideo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "heroPoster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "legacyEyebrow": {
+      "type": "string"
+    },
+    "legacyTitle": {
+      "type": "string"
+    },
+    "legacyText": {
+      "type": "text"
+    },
+    "threeWaysEyebrow": {
+      "type": "string"
+    },
+    "threeWaysTitle": {
+      "type": "string"
+    },
+    "threeWays": {
+      "type": "component",
+      "component": "shared.pillar",
+      "repeatable": true
+    },
+    "tablesideLeftLabel": {
+      "type": "string"
+    },
+    "tablesideLeftTitle": {
+      "type": "string"
+    },
+    "tablesideLeftImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "tablesideRightLabel": {
+      "type": "string"
+    },
+    "tablesideRightTitle": {
+      "type": "string"
+    },
+    "tablesideRightImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "tablesideQuote": {
+      "type": "text"
+    },
+    "curatedJourneysEyebrow": {
+      "type": "string"
+    },
+    "curatedJourneysTitle": {
+      "type": "string"
+    },
+    "regionalPairingsEyebrow": {
+      "type": "string"
+    },
+    "regionalPairingsTitle": {
+      "type": "string"
+    },
+    "regionalPairingsText": {
+      "type": "text"
+    },
+    "pairings": {
+      "type": "component",
+      "component": "shared.pairing",
+      "repeatable": true
+    },
+    "footerCtaEyebrow": {
+      "type": "string"
+    },
+    "footerCtaTitle": {
+      "type": "string"
+    },
+    "footerCtaSubtitle": {
+      "type": "string"
+    },
+    "footerCtaLabel": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

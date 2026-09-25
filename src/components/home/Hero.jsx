@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import { IMAGES, VIDEOS } from "@/lib/images";
+import { strapiMediaUrl } from "@/lib/strapi";
 
-export default function Hero() {
+export default function Hero({ page }) {
   const reduceMotion = useReducedMotion();
+  const posterUrl = strapiMediaUrl(page.heroPoster);
+  const videoUrl = strapiMediaUrl(page.heroVideo);
 
   return (
     <section className="relative h-screen min-h-[680px] w-full overflow-hidden">
@@ -12,15 +14,15 @@ export default function Hero() {
       <div className="absolute inset-0">
         {reduceMotion ? (
           <img
-            src={IMAGES.heroPoster}
-            alt="Dimly lit luxury Amrut whisky bar"
+            src={posterUrl}
+            alt={page.heroPoster?.alternativeText || "Dimly lit luxury Amrut whisky bar"}
             className="h-full w-full object-cover"
           />
         ) : (
           <video
             className="h-full w-full object-cover"
-            src={VIDEOS.hero}
-            poster={IMAGES.heroPoster}
+            src={videoUrl}
+            poster={posterUrl}
             autoPlay
             loop
             muted
@@ -53,7 +55,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
           className="font-heading text-[11px] uppercase tracking-luxe text-muted-gold mb-8"
         >
-          A Spirits Library · Tasting Room · Cocktail Destination
+          {page.heroEyebrow}
         </motion.p>
 
         <motion.h1
@@ -62,7 +64,7 @@ export default function Hero() {
           transition={{ duration: 1.4, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="font-heading uppercase tracking-luxe text-champagne text-shadow-amber text-5xl sm:text-7xl lg:text-8xl leading-none"
         >
-          House of Amrut
+          {page.heroTitle}
         </motion.h1>
 
         <motion.div
@@ -78,7 +80,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.2 }}
           className="font-display italic text-xl sm:text-2xl text-champagne/90 tracking-wide"
         >
-          Few find it. Fewer own the night.
+          {page.heroSubtitle}
         </motion.p>
 
         <motion.div
@@ -91,7 +93,7 @@ export default function Hero() {
             to="/the-house"
             className="group relative inline-flex items-center justify-center px-9 py-4 font-heading text-[11px] uppercase tracking-luxe text-gold border border-gold-strong transition-all duration-500 hover:bg-gold hover:text-onyx hover:glow-amber"
           >
-            <span className="relative z-10">Enter The House</span>
+            <span className="relative z-10">{page.heroCtaLabel}</span>
           </Link>
         </motion.div>
       </div>

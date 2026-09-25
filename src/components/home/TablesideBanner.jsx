@@ -1,25 +1,25 @@
 import React from "react";
 import { Reveal } from "@/components/ui/Reveal";
-import { IMAGES } from "@/lib/images";
+import { strapiMediaUrl } from "@/lib/strapi";
 
-export default function TablesideBanner() {
+export default function TablesideBanner({ page }) {
   return (
     <section className="relative bg-onyx border-t border-gold/10">
       <div className="grid grid-cols-1 md:grid-cols-2">
         <Reveal className="relative h-[60vh] md:h-[80vh] overflow-hidden group">
           <img
-            src={IMAGES.tastingCart}
-            alt="The tasting cart with Amrut bottles"
+            src={strapiMediaUrl(page.tablesideLeftImage)}
+            alt={page.tablesideLeftImage?.alternativeText || "The tasting cart with Amrut bottles"}
             className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-onyx/30" />
           <div className="absolute inset-0 flex items-end p-10">
             <div>
               <span className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold block mb-3">
-                01 · Pour
+                {page.tablesideLeftLabel}
               </span>
               <h3 className="font-heading uppercase tracking-luxe text-champagne text-2xl sm:text-3xl">
-                The Tasting Cart
+                {page.tablesideLeftTitle}
               </h3>
             </div>
           </div>
@@ -27,18 +27,18 @@ export default function TablesideBanner() {
 
         <Reveal delay={0.15} className="relative h-[60vh] md:h-[80vh] overflow-hidden group md:border-l border-gold/15">
           <img
-            src={IMAGES.tablesideCocktail}
-            alt="Tableside theatre craft cocktail"
+            src={strapiMediaUrl(page.tablesideRightImage)}
+            alt={page.tablesideRightImage?.alternativeText || "Tableside theatre craft cocktail"}
             className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-onyx/30" />
           <div className="absolute inset-0 flex items-end p-10">
             <div>
               <span className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold block mb-3">
-                02 · Craft
+                {page.tablesideRightLabel}
               </span>
               <h3 className="font-heading uppercase tracking-luxe text-champagne text-2xl sm:text-3xl">
-                Tableside Theatre
+                {page.tablesideRightTitle}
               </h3>
             </div>
           </div>
@@ -48,8 +48,7 @@ export default function TablesideBanner() {
       <div className="mx-auto max-w-luxe px-6 lg:px-10 py-20 text-center">
         <Reveal>
           <p className="font-display italic text-2xl sm:text-3xl text-champagne/85 max-w-3xl mx-auto leading-relaxed">
-            "Where the mixologist becomes the storyteller, and every pour is performed in the
-            glow of candlelight."
+            "{page.tablesideQuote}"
           </p>
         </Reveal>
       </div>

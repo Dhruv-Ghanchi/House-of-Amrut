@@ -2,19 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const NAV = [
-  { label: "The House", to: "/the-house" },
-  { label: "Experiences", to: "/experiences" },
-  { label: "Tasting Room", to: "/tasting-room" },
-  { label: "Library", to: "/library" },
-  { label: "Journeys", to: "/journeys" },
-  { label: "Contact", to: "/contact" },
-];
-
-
+import { strapiMediaUrl } from "@/lib/strapi";
+import { useGlobal } from "@/hooks/useCms";
 
 export default function SiteHeader() {
+  const { data: global } = useGlobal();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -28,6 +20,11 @@ export default function SiteHeader() {
 
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
+  if (!global) return null;
+
+  const nav = global.navLinks ?? [];
+  const logoUrl = strapiMediaUrl(global.logo);
+
   return (
     <header
       className={cn(
@@ -39,19 +36,19 @@ export default function SiteHeader() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <img 
-              src="/images/logo.png" 
-              alt="House of Amrut" 
-              className="h-14 sm:h-16 w-auto object-contain" 
+            <img
+              src={logoUrl}
+              alt={global.siteName || "House of Amrut"}
+              className="h-14 sm:h-16 w-auto object-contain"
             />
           </Link>
 
           {/* Center nav */}
           <nav className="hidden lg:flex items-center gap-9">
-            {NAV.map((n) => (
+            {nav.map((n) => (
               <NavLink
-                key={n.to}
-                to={n.to}
+                key={n.id}
+                to={n.url}
                 className={({ isActive }) =>
                   cn(
                     "group relative font-heading text-[10px] uppercase tracking-luxe transition-colors duration-300",
@@ -80,7 +77,7 @@ export default function SiteHeader() {
               to="/contact"
               className="font-heading text-[10px] uppercase tracking-luxe text-gold border border-gold-strong px-5 py-2.5 hover:bg-gold hover:text-onyx transition-all duration-500"
             >
-              Reserve Your Table
+              {global.reserveCtaLabel}
             </Link>
           </div>
 
@@ -99,10 +96,10 @@ export default function SiteHeader() {
       {open && (
         <div className="lg:hidden bg-onyx/98 backdrop-blur-md border-t border-gold/15">
           <nav className="flex flex-col px-6 py-6 gap-5">
-            {NAV.map((n) => (
+            {nav.map((n) => (
               <NavLink
-                key={n.to}
-                to={n.to}
+                key={n.id}
+                to={n.url}
                 className={({ isActive }) =>
                   cn(
                     "font-heading text-xs uppercase tracking-luxe",
@@ -117,7 +114,7 @@ export default function SiteHeader() {
               to="/contact"
               className="mt-2 inline-block font-heading text-[10px] uppercase tracking-luxe text-gold border border-gold-strong px-5 py-3 text-center"
             >
-              Reserve Your Table
+              {global.reserveCtaLabel}
             </Link>
           </nav>
         </div>

@@ -1,0 +1,81 @@
+{
+  "kind": "singleType",
+  "collectionName": "the_house_page",
+  "info": {
+    "singularName": "the-house-page",
+    "pluralName": "the-house-pages",
+    "displayName": "The House Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "heritageEyebrow": {
+      "type": "string"
+    },
+    "heritageTitle": {
+      "type": "string"
+    },
+    "heritageText": {
+      "type": "text"
+    },
+    "heritageImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "craftsmanshipEyebrow": {
+      "type": "string"
+    },
+    "craftsmanshipTitle": {
+      "type": "string"
+    },
+    "pillars": {
+      "type": "component",
+      "component": "shared.pillar",
+      "repeatable": true
+    },
+    "galleryTitle": {
+      "type": "string"
+    },
+    "gallery": {
+      "type": "component",
+      "component": "shared.gallery-item",
+      "repeatable": true
+    },
+    "ctaTitle": {
+      "type": "string"
+    },
+    "ctaLabel": {
+      "type": "string"
+    },
+    "ctaLink": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

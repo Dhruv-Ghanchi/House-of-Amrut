@@ -1,0 +1,66 @@
+{
+  "kind": "singleType",
+  "collectionName": "global",
+  "info": {
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Global",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "default": "House of Amrut"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "footerTagline": {
+      "type": "string"
+    },
+    "reserveCtaLabel": {
+      "type": "string",
+      "default": "Reserve Your Table"
+    },
+    "navLinks": {
+      "type": "component",
+      "component": "shared.cta-link",
+      "repeatable": true
+    },
+    "address": {
+      "type": "string"
+    },
+    "hours": {
+      "type": "string"
+    },
+    "closedNote": {
+      "type": "string"
+    },
+    "dressCode": {
+      "type": "string"
+    },
+    "instagramHandle": {
+      "type": "string"
+    },
+    "instagramUrl": {
+      "type": "string"
+    },
+    "copyrightText": {
+      "type": "string"
+    },
+    "footerMotto": {
+      "type": "string"
+    },
+    "designerCredit": {
+      "type": "string"
+    }
+  }
+}

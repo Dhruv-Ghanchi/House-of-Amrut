@@ -1,0 +1,54 @@
+{
+  "kind": "singleType",
+  "collectionName": "tasting_room_page",
+  "info": {
+    "singularName": "tasting-room-page",
+    "pluralName": "tasting-room-pages",
+    "displayName": "Tasting Room Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "downloadMenuLabel": {
+      "type": "string"
+    },
+    "pairingsEyebrow": {
+      "type": "string"
+    },
+    "pairingsTitle": {
+      "type": "string"
+    },
+    "pairings": {
+      "type": "component",
+      "component": "shared.pairing",
+      "repeatable": true
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "pairedWithLabel": {
+      "type": "string"
+    }
+  }
+}

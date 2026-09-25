@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "journeys",
+  "info": {
+    "singularName": "journey",
+    "pluralName": "journeys",
+    "displayName": "Journey",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "pours": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

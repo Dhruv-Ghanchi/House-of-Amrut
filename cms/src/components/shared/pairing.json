@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_pairings",
+  "info": {
+    "displayName": "Pairing",
+    "icon": "utensils"
+  },
+  "options": {},
+  "attributes": {
+    "region": {
+      "type": "string",
+      "required": true
+    },
+    "whisky": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

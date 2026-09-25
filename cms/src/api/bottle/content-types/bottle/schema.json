@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bottles",
+  "info": {
+    "singularName": "bottle",
+    "pluralName": "bottles",
+    "displayName": "Bottle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "year": {
+      "type": "string"
+    },
+    "cask": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Limited Edition",
+        "Single Cask",
+        "Distiller's Reserve",
+        "Discontinued"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "profile": {
+      "type": "component",
+      "component": "shared.tasting-profile",
+      "repeatable": false
+    }
+  }
+}

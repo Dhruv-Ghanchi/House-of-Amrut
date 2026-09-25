@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_shared_tasting_profiles",
+  "info": {
+    "displayName": "Tasting Profile",
+    "icon": "chart-pie"
+  },
+  "options": {},
+  "attributes": {
+    "sweetness": {
+      "type": "integer",
+      "min": 0,
+      "max": 100,
+      "default": 50
+    },
+    "smoke": {
+      "type": "integer",
+      "min": 0,
+      "max": 100,
+      "default": 50
+    },
+    "spice": {
+      "type": "integer",
+      "min": 0,
+      "max": 100,
+      "default": 50
+    },
+    "fruit": {
+      "type": "integer",
+      "min": 0,
+      "max": 100,
+      "default": 50
+    },
+    "oak": {
+      "type": "integer",
+      "min": 0,
+      "max": 100,
+      "default": 50
+    }
+  }
+}

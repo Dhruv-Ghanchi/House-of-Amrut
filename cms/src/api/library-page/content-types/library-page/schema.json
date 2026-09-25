@@ -1,0 +1,56 @@
+{
+  "kind": "singleType",
+  "collectionName": "library_page",
+  "info": {
+    "singularName": "library-page",
+    "pluralName": "library-pages",
+    "displayName": "Library Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "vaultEyebrow": {
+      "type": "string"
+    },
+    "vaultTitle": {
+      "type": "string"
+    },
+    "vaultText": {
+      "type": "text"
+    },
+    "vaultImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "vaultBadge": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_experience_pillars",
+  "info": {
+    "displayName": "Experience Pillar",
+    "icon": "list"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "duration": {
+      "type": "string"
+    },
+    "group": {
+      "type": "string"
+    },
+    "tier": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

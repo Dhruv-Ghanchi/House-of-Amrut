@@ -1,6 +1,10 @@
 #env
 .env
 .env.*
+!.env.example
+
+# transient dev-server pid files
+*.pid
 
 # Logs
 /logs

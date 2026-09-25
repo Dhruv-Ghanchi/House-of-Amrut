@@ -1,0 +1,49 @@
+{
+  "kind": "singleType",
+  "collectionName": "journeys_page",
+  "info": {
+    "singularName": "journeys-page",
+    "pluralName": "journeys-pages",
+    "displayName": "Journeys Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "sectionEyebrow": {
+      "type": "string"
+    },
+    "sectionTitle": {
+      "type": "string"
+    },
+    "quoteText": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "reserveCtaLabel": {
+      "type": "string"
+    }
+  }
+}

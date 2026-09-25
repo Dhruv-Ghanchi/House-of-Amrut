@@ -1,0 +1,89 @@
+{
+  "kind": "singleType",
+  "collectionName": "experiences_page",
+  "info": {
+    "singularName": "experiences-page",
+    "pluralName": "experiences-pages",
+    "displayName": "Experiences Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroEyebrow": {
+      "type": "string"
+    },
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "pillarsEyebrow": {
+      "type": "string"
+    },
+    "pillarsTitle": {
+      "type": "string"
+    },
+    "pillars": {
+      "type": "component",
+      "component": "shared.experience-pillar",
+      "repeatable": true
+    },
+    "tablesideEyebrow": {
+      "type": "string"
+    },
+    "tablesideTitle": {
+      "type": "string"
+    },
+    "tablesideText": {
+      "type": "text"
+    },
+    "tablesideImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "tablesideCtaLabel": {
+      "type": "string"
+    },
+    "diningEyebrow": {
+      "type": "string"
+    },
+    "diningTitle": {
+      "type": "string"
+    },
+    "diningText": {
+      "type": "text"
+    },
+    "diningImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "diningCtaLabel": {
+      "type": "string"
+    },
+    "stickyCtaLabel": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}
