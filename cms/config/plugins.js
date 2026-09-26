@@ -21,21 +21,37 @@ const deniedTypes = [
   'application/x-mach-binary',
 ];
 
-module.exports = () => ({
-  'users-permissions': {
-    config: {
-      jwtManagement: 'refresh',
-      sessions: {
-        httpOnly: true,
+module.exports = ({ env }) => {
+  // Render/most free hosts have no persistent disk — local uploads vanish on
+  // every restart. When Cloudinary credentials are present, route uploads
+  // there instead; otherwise fall back to local disk storage (fine for dev,
+  // or a host with a real persistent volume).
+  const useCloudinary = Boolean(env('CLOUDINARY_NAME'));
+
+  return {
+    'users-permissions': {
+      config: {
+        jwtManagement: 'refresh',
+        sessions: {
+          httpOnly: true,
+        },
       },
     },
-  },
-  upload: {
-    config: {
-      security: {
-        allowedTypes: allowedMediaTypes,
-        deniedTypes,
+    upload: {
+      config: {
+        ...(useCloudinary && {
+          provider: 'cloudinary',
+          providerOptions: {
+            cloud_name: env('CLOUDINARY_NAME'),
+            api_key: env('CLOUDINARY_KEY'),
+            api_secret: env('CLOUDINARY_SECRET'),
+          },
+        }),
+        security: {
+          allowedTypes: allowedMediaTypes,
+          deniedTypes,
+        },
       },
     },
-  },
-});
+  };
+};

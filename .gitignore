@@ -45,3 +45,6 @@ base44/.app.jsonc
 
 # Google Drive MCP OAuth credentials — never commit
 /.gdrive/
+
+.vercel
+.env*
