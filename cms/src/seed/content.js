@@ -7,6 +7,7 @@ const SEED_ASSETS = path.join(__dirname, '..', '..', 'seed-assets');
 const IMAGES_DIR = path.join(SEED_ASSETS, 'images');
 const VIDEOS_DIR = path.join(SEED_ASSETS, 'videos');
 const ICONS_DIR = path.join(SEED_ASSETS, 'icons');
+const DISH_PHOTOS_DIR = path.join(SEED_ASSETS, 'dish-photos');
 
 const MIME = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', svg: 'image/svg+xml', mp4: 'video/mp4' };
 
@@ -38,10 +39,6 @@ module.exports = async function seedContent(strapi) {
     heroBar: 'heroBar.jpg',
     tastingCart: 'tastingCart.jpg',
     tablesideCocktail: 'tablesideCocktail.jpg',
-    dishNorth: '70d688159_generated_ced416f2.jpg',
-    dishEast: 'fb222bfdb_generated_3f3b396d.jpg',
-    dishWest: '7a28416b0_generated_09c02005.jpg',
-    dishSouth: '3627954d8_generated_4f8d61a3.jpg',
     theHouseHero: 'theHouseHero.jpg',
     heritageArchive: 'heritageArchive.jpg',
     experiencesHero: 'experiencesHero.jpg',
@@ -59,6 +56,15 @@ module.exports = async function seedContent(strapi) {
   };
   for (const [key, filename] of Object.entries(imageFiles)) {
     img[key] = await uploadAsset(strapi, IMAGES_DIR, filename);
+  }
+  const dishPhotoFiles = {
+    dishNorth: 'north-three-cheese-kulcha.png',
+    dishEast: 'east-chilli-paneer.png',
+    dishSouth: 'south-curry-leaf-crispy-chicken.png',
+    dishWest: 'west-bombay-cutlet-pav.png',
+  };
+  for (const [key, filename] of Object.entries(dishPhotoFiles)) {
+    img[key] = await uploadAsset(strapi, DISH_PHOTOS_DIR, filename);
   }
   const heroVideo = await uploadAsset(strapi, VIDEOS_DIR, 'hero.mp4');
 
@@ -248,7 +254,7 @@ module.exports = async function seedContent(strapi) {
       pairings: [
         { region: 'North', whisky: 'Amrut Naarangi', image: img.dishNorth.id },
         { region: 'East', whisky: 'Amrut Peated', image: img.dishEast.id },
-        { region: 'West', whisky: 'Amrut Single Malt', image: img.dishWest.id },
+        { region: 'West', whisky: 'Amrut Indian Single Malt', image: img.dishWest.id },
         { region: 'South', whisky: 'Amrut Cask Strength', image: img.dishSouth.id },
       ],
     },
