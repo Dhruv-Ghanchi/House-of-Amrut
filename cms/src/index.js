@@ -6,6 +6,7 @@ const patch2 = require('./seed/patch-2');
 const patch3 = require('./seed/patch-3');
 const patch4RealBottles = require('./seed/patch-4-real-bottles');
 const patch5DedupeBottles = require('./seed/patch-5-dedupe-bottles');
+const patch6RealMenu = require('./seed/patch-6-real-menu');
 
 module.exports = {
   register(/*{ strapi }*/) {},
@@ -45,6 +46,13 @@ module.exports = {
       await patch5DedupeBottles(strapi);
     } catch (err) {
       strapi.log.error('[patch] Bottle dedupe failed — fix and restart to retry.');
+      strapi.log.error(err);
+    }
+
+    try {
+      await patch6RealMenu(strapi);
+    } catch (err) {
+      strapi.log.error('[patch] Real menu patch failed — fix and restart to retry.');
       strapi.log.error(err);
     }
   },

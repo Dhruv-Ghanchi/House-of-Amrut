@@ -52,6 +52,40 @@ export interface SharedGalleryItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedMenuCategory extends Struct.ComponentSchema {
+  collectionName: 'components_shared_menu_categories';
+  info: {
+    displayName: 'Menu Category';
+    icon: 'bulletList';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    items: Schema.Attribute.Component<'shared.menu-item-entry', true>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    priceColumns: Schema.Attribute.String;
+    sectionGroup: Schema.Attribute.String;
+  };
+}
+
+export interface SharedMenuItemEntry extends Struct.ComponentSchema {
+  collectionName: 'components_shared_menu_item_entries';
+  info: {
+    displayName: 'Menu Item';
+    icon: 'bulletList';
+  };
+  attributes: {
+    abv: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    notes: Schema.Attribute.Text;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    price1: Schema.Attribute.String;
+    price2: Schema.Attribute.String;
+    price3: Schema.Attribute.String;
+    region: Schema.Attribute.Enumeration<['North', 'South', 'East', 'West']>;
+  };
+}
+
 export interface SharedOption extends Struct.ComponentSchema {
   collectionName: 'components_shared_options';
   info: {
@@ -163,6 +197,8 @@ declare module '@strapi/strapi' {
       'shared.experience-pillar': SharedExperiencePillar;
       'shared.faq-item': SharedFaqItem;
       'shared.gallery-item': SharedGalleryItem;
+      'shared.menu-category': SharedMenuCategory;
+      'shared.menu-item-entry': SharedMenuItemEntry;
       'shared.option': SharedOption;
       'shared.pairing': SharedPairing;
       'shared.pillar': SharedPillar;

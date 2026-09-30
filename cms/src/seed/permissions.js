@@ -13,7 +13,7 @@ const SINGLE_TYPES = [
   'contact-page',
 ];
 
-const COLLECTION_TYPES = ['bottle', 'journey', 'menu-category', 'menu-item'];
+const COLLECTION_TYPES = ['bottle', 'journey'];
 
 module.exports = async function setPublicReadPermissions(strapi) {
   const publicRole = await strapi

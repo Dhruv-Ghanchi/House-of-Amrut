@@ -42,6 +42,11 @@
       "component": "shared.pairing",
       "repeatable": true
     },
+    "menu": {
+      "type": "component",
+      "component": "shared.menu-category",
+      "repeatable": true
+    },
     "seo": {
       "type": "component",
       "component": "shared.seo",

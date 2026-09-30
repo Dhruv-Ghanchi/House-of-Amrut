@@ -40,10 +40,3 @@ export const useBottles = () =>
 
 export const useJourneys = () =>
   useCollectionType("journeys", "/journeys", { populate: POPULATE.journey, "pagination[pageSize]": 100, sort: "order:asc" });
-
-export const useMenu = () =>
-  useCollectionType("menu-categories", "/menu-categories", {
-    populate: POPULATE.menuCategory,
-    "pagination[pageSize]": 100,
-    sort: "order:asc",
-  });

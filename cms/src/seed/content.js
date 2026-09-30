@@ -353,49 +353,5 @@ module.exports = async function seedContent(strapi) {
     });
   }
 
-  strapi.log.info('[seed] Writing tasting room menu…');
-  const MENU = {
-    'Signature Cocktails': [
-      { name: 'Amrut Old Fashioned', notes: 'Peat · Bitters · Orange Peel', abv: '32%', price: '₹1,200' },
-      { name: 'The Cask & Smoke', notes: 'Smoke · Charred Oak · Honey', abv: '28%', price: '₹1,400' },
-      { name: 'Velvet Saffron', notes: 'Saffron · Cardamom · Cream', abv: '24%', price: '₹1,100' },
-      { name: 'Chennai Sour', notes: 'Citrus · Tamarind · Egg White', abv: '22%', price: '₹950' },
-    ],
-    'Pure Single Malts': [
-      { name: 'Amrut Single Malt', notes: 'Honey · Vanilla · Oak', abv: '46%', price: '₹900 / dram' },
-      { name: 'Amrut Cask Strength', notes: 'Spice · Dark Fruit · Leather', abv: '62.8%', price: '₹1,600 / dram' },
-      { name: 'Amrut Peated', notes: 'Peat · Malt · Sea Salt', abv: '46%', price: '₹1,100 / dram' },
-      { name: 'Amrut Naarangi', notes: 'Orange · Oak · Spice', abv: '40%', price: '₹1,250 / dram' },
-    ],
-    'Vintage Flight Collections': [
-      { name: 'Founders Reserve Flight', notes: '3 × 15ml · House Lineage', abv: '', price: '₹3,800' },
-      { name: 'Ex-Bourbon Cask Flight', notes: '3 × 15ml · Vanilla Forward', abv: '', price: '₹4,200' },
-      { name: 'Sherry Cask Flight', notes: '3 × 15ml · Dark Fruit', abv: '', price: '₹4,800' },
-      { name: 'Cask Strength Flight', notes: '3 × 15ml · Untamed', abv: '', price: '₹5,400' },
-    ],
-    'Small Bites': [
-      { name: 'Truffle Bhelpuri', notes: 'Black Truffle · Puffed Rice', abv: '', price: '₹650' },
-      { name: 'Malai Tikka Skewers', notes: 'Charcoal · Cream · Saffron', abv: '', price: '₹780' },
-      { name: 'Goan Sausage Toast', notes: 'Smoked · Vinegar · Chili', abv: '', price: '₹720' },
-      { name: 'Dark Chocolate & Cask', notes: '70% Cacao · Oak-aged Cream', abv: '', price: '₹590' },
-    ],
-  };
-  let catOrder = 0;
-  for (const [catName, items] of Object.entries(MENU)) {
-    catOrder += 1;
-    const category = await strapi.documents('api::menu-category.menu-category').create({
-      status: 'published',
-      data: { name: catName, order: catOrder },
-    });
-    let itemOrder = 0;
-    for (const item of items) {
-      itemOrder += 1;
-      await strapi.documents('api::menu-item.menu-item').create({
-        status: 'published',
-        data: { ...item, order: itemOrder, category: category.documentId },
-      });
-    }
-  }
-
   strapi.log.info('[seed] Done. House of Amrut content is live in Strapi.');
 };

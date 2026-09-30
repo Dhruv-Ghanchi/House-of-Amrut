@@ -65,6 +65,7 @@ export const POPULATE = {
   tastingRoomPage: {
     heroImage: true,
     pairings: { populate: { image: true } },
+    menu: { populate: { items: true } },
     seo: true,
   },
   libraryPage: { heroImage: true, vaultImage: true, seo: true },
@@ -79,5 +80,4 @@ export const POPULATE = {
   },
   bottle: { image: true, profile: true },
   journey: { icon: true },
-  menuCategory: { menu_items: true },
 };

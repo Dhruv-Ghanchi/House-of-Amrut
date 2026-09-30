@@ -1,27 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PageHero from "@/components/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { strapiMediaUrl } from "@/lib/strapi";
-import { useTastingRoomPage, useMenu } from "@/hooks/useCms";
+import { useTastingRoomPage } from "@/hooks/useCms";
 import { CmsLoading, CmsError } from "@/components/CmsState";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { Download } from "lucide-react";
 
+function groupMenu(menu) {
+  const groups = [];
+  const byLabel = new Map();
+  const sorted = [...(menu ?? [])].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  for (const category of sorted) {
+    const label = category.sectionGroup || category.name;
+    if (!byLabel.has(label)) {
+      const group = { label, categories: [] };
+      byLabel.set(label, group);
+      groups.push(group);
+    }
+    byLabel.get(label).categories.push(category);
+  }
+  return groups;
+}
+
+function priceColumns(category) {
+  return (category.priceColumns ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function itemPrices(item) {
+  return [item.price1, item.price2, item.price3].filter((p) => p !== null && p !== undefined && p !== "");
+}
+
 export default function TastingRoom() {
   const { data: page, isLoading: pageLoading, isError: pageError } = useTastingRoomPage();
-  const { data: categories, isLoading: menuLoading, isError: menuError } = useMenu();
   const [tab, setTab] = useState(null);
   useDocumentMeta(page?.seo);
 
+  const groups = useMemo(() => groupMenu(page?.menu), [page]);
+
   useEffect(() => {
-    if (categories?.length && tab === null) setTab(categories[0].name);
-  }, [categories, tab]);
+    if (groups.length && tab === null) setTab(groups[0].label);
+  }, [groups, tab]);
 
-  if (pageLoading || menuLoading) return <CmsLoading />;
-  if (pageError || menuError || !page) return <CmsError label="the Tasting Room page" />;
+  if (pageLoading) return <CmsLoading />;
+  if (pageError || !page) return <CmsError label="the Tasting Room page" />;
 
-  const activeCategory = categories.find((c) => c.name === tab) ?? categories[0];
-  const items = [...(activeCategory?.menu_items ?? [])].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  const activeGroup = groups.find((g) => g.label === tab) ?? groups[0];
 
   return (
     <>
@@ -35,40 +62,98 @@ export default function TastingRoom() {
       {/* Filter tabs */}
       <section className="py-20 bg-onyx border-t border-gold/10">
         <div className="mx-auto max-w-luxe px-6 lg:px-10">
-          <Reveal className="flex flex-wrap justify-center gap-3 mb-14">
-            {categories.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => setTab(c.name)}
-                className={`px-5 py-3 font-heading text-[10px] uppercase tracking-luxe border transition-all duration-300 ${
-                  tab === c.name
-                    ? "border-gold text-champagne bg-gold/10"
-                    : "border-gold/20 text-muted-gold hover:text-gold"
-                }`}
-              >
-                {c.name}
-              </button>
-            ))}
-          </Reveal>
+          {groups.length > 1 && (
+            <Reveal className="flex flex-wrap justify-center gap-3 mb-14">
+              {groups.map((g) => (
+                <button
+                  key={g.label}
+                  onClick={() => setTab(g.label)}
+                  className={`px-5 py-3 font-heading text-[10px] uppercase tracking-luxe border transition-all duration-300 ${
+                    tab === g.label
+                      ? "border-gold text-champagne bg-gold/10"
+                      : "border-gold/20 text-muted-gold hover:text-gold"
+                  }`}
+                >
+                  {g.label}
+                </button>
+              ))}
+            </Reveal>
+          )}
 
-          {/* Menu grid */}
-          <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/15 border border-gold/15">
-            {items.map((item) => (
-              <div key={item.id} className="bg-onyx px-8 py-8 group hover:bg-velvet/40 transition-colors duration-500">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-heading uppercase tracking-luxe text-champagne text-base sm:text-lg">
-                    {item.name}
-                  </h3>
-                  <span className="font-mono text-sm text-gold whitespace-nowrap">{item.price}</span>
-                </div>
-                <div className="flex items-center justify-between mt-3">
-                  <p className="font-body text-sm text-champagne/55">{item.notes}</p>
-                  <span className="font-mono text-[11px] text-muted-gold">{item.abv}</span>
-                </div>
-                <span className="block h-px w-0 bg-gold/40 mt-5 group-hover:w-full transition-all duration-700" />
+          {/* Menu sections */}
+          {(activeGroup?.categories ?? []).map((category) => {
+            const cols = priceColumns(category);
+            const items = [...(category.items ?? [])].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            return (
+              <div key={category.id} className="mb-16 last:mb-0">
+                {activeGroup.categories.length > 1 && (
+                  <Reveal className="mb-6 text-center">
+                    <h3 className="font-heading uppercase tracking-luxe text-gold text-lg sm:text-xl">
+                      {category.name}
+                    </h3>
+                    {category.description && (
+                      <p className="font-body text-sm text-champagne/55 mt-2 max-w-2xl mx-auto">
+                        {category.description}
+                      </p>
+                    )}
+                  </Reveal>
+                )}
+                {activeGroup.categories.length === 1 && category.description && (
+                  <Reveal className="mb-8 text-center">
+                    <p className="font-body text-sm text-champagne/55 max-w-2xl mx-auto">{category.description}</p>
+                  </Reveal>
+                )}
+
+                {cols.length > 1 && (
+                  <div className="flex justify-end gap-6 pr-8 mb-2 font-mono text-[10px] uppercase tracking-luxe-sm text-muted-gold">
+                    {cols.map((c) => (
+                      <span key={c} className="w-12 text-right">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/15 border border-gold/15">
+                  {items.map((item) => {
+                    const prices = itemPrices(item);
+                    return (
+                      <div
+                        key={item.id}
+                        className="bg-onyx px-8 py-8 group hover:bg-velvet/40 transition-colors duration-500"
+                      >
+                        <div className="flex items-baseline justify-between gap-4">
+                          <h4 className="font-heading uppercase tracking-luxe text-champagne text-base sm:text-lg">
+                            {item.name}
+                          </h4>
+                          {prices.length > 0 ? (
+                            <span className="flex gap-4 font-mono text-sm text-gold whitespace-nowrap">
+                              {prices.map((p, i) => (
+                                <span key={i} className="w-12 text-right">
+                                  {p}
+                                </span>
+                              ))}
+                            </span>
+                          ) : (
+                            <span className="font-mono text-[11px] uppercase tracking-luxe-sm text-gold whitespace-nowrap">
+                              On the House
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex items-center justify-between mt-3">
+                          <p className="font-body text-sm text-champagne/55">{item.notes}</p>
+                          <span className="font-mono text-[11px] text-muted-gold whitespace-nowrap ml-4">
+                            {item.region ? item.region : item.abv}
+                          </span>
+                        </div>
+                        <span className="block h-px w-0 bg-gold/40 mt-5 group-hover:w-full transition-all duration-700" />
+                      </div>
+                    );
+                  })}
+                </Reveal>
               </div>
-            ))}
-          </Reveal>
+            );
+          })}
 
           <Reveal className="text-center mt-12">
             <button className="inline-flex items-center gap-3 px-8 py-3.5 font-heading text-[11px] uppercase tracking-luxe text-gold border border-gold-strong transition-all duration-500 hover:bg-gold hover:text-onyx">

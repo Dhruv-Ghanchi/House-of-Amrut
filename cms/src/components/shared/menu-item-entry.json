@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_shared_menu_item_entries",
+  "info": {
+    "displayName": "Menu Item",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "notes": {
+      "type": "text",
+      "pluginOptions": {},
+      "description": "Tasting notes or ingredients, e.g. \"Tropical fruit | honey | toasted oak\""
+    },
+    "abv": {
+      "type": "string",
+      "description": "e.g. \"46% ABV\" — leave blank if not applicable"
+    },
+    "price1": {
+      "type": "string",
+      "description": "Price under the category's 1st price column"
+    },
+    "price2": {
+      "type": "string",
+      "description": "Price under the category's 2nd price column (leave blank if none)"
+    },
+    "price3": {
+      "type": "string",
+      "description": "Price under the category's 3rd price column (leave blank if none)"
+    },
+    "region": {
+      "type": "enumeration",
+      "enum": [
+        "North",
+        "South",
+        "East",
+        "West"
+      ],
+      "description": "Only used for regional dishes (e.g. On The House Nibbles) — leave blank otherwise"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "description": "Sets the display order within its category — lower numbers show first"
+    }
+  }
+}

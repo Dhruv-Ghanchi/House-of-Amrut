@@ -799,78 +799,6 @@ export interface ApiLibraryPageLibraryPage extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiMenuCategoryMenuCategory
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'menu_categories';
-  info: {
-    description: '';
-    displayName: 'Menu Category';
-    pluralName: 'menu-categories';
-    singularName: 'menu-category';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::menu-category.menu-category'
-    > &
-      Schema.Attribute.Private;
-    menu_items: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::menu-item.menu-item'
-    >;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiMenuItemMenuItem extends Struct.CollectionTypeSchema {
-  collectionName: 'menu_items';
-  info: {
-    description: '';
-    displayName: 'Menu Item';
-    pluralName: 'menu-items';
-    singularName: 'menu-item';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    abv: Schema.Attribute.String;
-    category: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::menu-category.menu-category'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::menu-item.menu-item'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    notes: Schema.Attribute.String;
-    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
-    price: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiTastingRoomPageTastingRoomPage
   extends Struct.SingleTypeSchema {
   collectionName: 'tasting_room_page';
@@ -898,6 +826,7 @@ export interface ApiTastingRoomPageTastingRoomPage
       'api::tasting-room-page.tasting-room-page'
     > &
       Schema.Attribute.Private;
+    menu: Schema.Attribute.Component<'shared.menu-category', true>;
     pairedWithLabel: Schema.Attribute.String;
     pairings: Schema.Attribute.Component<'shared.pairing', true>;
     pairingsEyebrow: Schema.Attribute.String;
@@ -1474,8 +1403,6 @@ declare module '@strapi/strapi' {
       'api::journey.journey': ApiJourneyJourney;
       'api::journeys-page.journeys-page': ApiJourneysPageJourneysPage;
       'api::library-page.library-page': ApiLibraryPageLibraryPage;
-      'api::menu-category.menu-category': ApiMenuCategoryMenuCategory;
-      'api::menu-item.menu-item': ApiMenuItemMenuItem;
       'api::tasting-room-page.tasting-room-page': ApiTastingRoomPageTastingRoomPage;
       'api::the-house-page.the-house-page': ApiTheHousePageTheHousePage;
       'plugin::content-releases.release': PluginContentReleasesRelease;

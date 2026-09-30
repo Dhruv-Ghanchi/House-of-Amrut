@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_shared_menu_categories",
+  "info": {
+    "displayName": "Menu Category",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Category heading, e.g. \"Greedy Angels & Rare Aged\""
+    },
+    "sectionGroup": {
+      "type": "string",
+      "description": "Groups this category under a top-level heading on the page, e.g. \"Amrut Archive\" or \"Amrut Bar\". Leave blank for no grouping."
+    },
+    "description": {
+      "type": "text",
+      "description": "Optional short blurb shown under the category heading"
+    },
+    "priceColumns": {
+      "type": "string",
+      "description": "Column headers for pricing, separated by commas — e.g. \"0.5 oz, 1 oz, 2 oz\". Leave blank if items only have one price."
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "description": "Sets the display order of this category — lower numbers show first"
+    },
+    "items": {
+      "type": "component",
+      "component": "shared.menu-item-entry",
+      "repeatable": true
+    }
+  }
+}
