@@ -7,6 +7,16 @@ import { CmsLoading, CmsError } from "@/components/CmsState";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { Download } from "lucide-react";
 
+// Crop focal point per region, tuned to each photo's actual composition —
+// the dish sits off-center in these venue photos, so a plain "center" crop
+// (default object-fit: cover behavior) cuts into the plate/garnish.
+const PAIRING_FOCAL_POINT = {
+  North: "65% center",
+  East: "center",
+  South: "center 85%",
+  West: "center 100%",
+};
+
 function groupMenu(menu) {
   const groups = [];
   const byLabel = new Map();
@@ -179,7 +189,12 @@ export default function TastingRoom() {
             {(page.pairings ?? []).map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1} className="bg-onyx group">
                 <div className="relative aspect-square overflow-hidden">
-                  <img src={strapiMediaUrl(p.image)} alt={p.region} className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
+                  <img
+                    src={strapiMediaUrl(p.image)}
+                    alt={p.region}
+                    style={{ objectPosition: PAIRING_FOCAL_POINT[p.region] ?? "center" }}
+                    className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110"
+                  />
                   <div className="absolute inset-0 bg-onyx/40" />
                   <span className="absolute top-4 left-4 font-heading text-[10px] uppercase tracking-luxe text-champagne">
                     {p.region}

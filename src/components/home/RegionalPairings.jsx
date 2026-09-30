@@ -2,6 +2,16 @@ import React from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { strapiMediaUrl } from "@/lib/strapi";
 
+// Crop focal point per region, tuned to each photo's actual composition and
+// this grid's taller 4:5 tile (different crop severity than the Tasting
+// Room's square tiles, so these values are tuned separately).
+const PAIRING_FOCAL_POINT = {
+  North: "76% center",
+  East: "58% center",
+  South: "center 60%",
+  West: "center 60%",
+};
+
 export default function RegionalPairings({ page }) {
   const regions = page.pairings ?? [];
 
@@ -27,6 +37,7 @@ export default function RegionalPairings({ page }) {
                 <img
                   src={strapiMediaUrl(r.image)}
                   alt={`${r.region} Indian dish`}
+                  style={{ objectPosition: PAIRING_FOCAL_POINT[r.region] ?? "center" }}
                   className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-onyx/40 group-hover:bg-onyx/20 transition-colors duration-500" />
