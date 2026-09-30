@@ -48,10 +48,10 @@
       "type": "string"
     },
     "latitude": {
-      "type": "decimal"
+      "type": "float"
     },
     "longitude": {
-      "type": "decimal"
+      "type": "float"
     },
     "instagramHandle": {
       "type": "string"

@@ -611,7 +611,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     hours: Schema.Attribute.String;
     instagramHandle: Schema.Attribute.String;
     instagramUrl: Schema.Attribute.String;
-    latitude: Schema.Attribute.Decimal;
+    latitude: Schema.Attribute.Float;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -619,7 +619,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images'>;
-    longitude: Schema.Attribute.Decimal;
+    longitude: Schema.Attribute.Float;
     navLinks: Schema.Attribute.Component<'shared.cta-link', true>;
     publishedAt: Schema.Attribute.DateTime;
     reserveCtaLabel: Schema.Attribute.String &
