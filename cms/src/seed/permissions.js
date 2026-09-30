@@ -15,6 +15,10 @@ const SINGLE_TYPES = [
 
 const COLLECTION_TYPES = ['bottle', 'journey'];
 
+// Publicly creatable but not publicly listable/readable — the reservation
+// form submits here, but submissions should only be visible in the admin.
+const PUBLIC_CREATE_TYPES = ['reservation'];
+
 module.exports = async function setPublicReadPermissions(strapi) {
   const publicRole = await strapi
     .query('plugin::users-permissions.role')
@@ -31,6 +35,7 @@ module.exports = async function setPublicReadPermissions(strapi) {
       `api::${uid}.${uid}.find`,
       `api::${uid}.${uid}.findOne`,
     ]),
+    ...PUBLIC_CREATE_TYPES.map((uid) => `api::${uid}.${uid}.create`),
   ];
 
   for (const action of actions) {
@@ -42,7 +47,7 @@ module.exports = async function setPublicReadPermissions(strapi) {
       await strapi.query('plugin::users-permissions.permission').create({
         data: { action, role: publicRole.id },
       });
-      strapi.log.info(`[seed] Granted public read: ${action}`);
+      strapi.log.info(`[seed] Granted public permission: ${action}`);
     }
   }
 };

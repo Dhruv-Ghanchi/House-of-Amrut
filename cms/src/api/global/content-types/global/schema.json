@@ -47,6 +47,12 @@
     "dressCode": {
       "type": "string"
     },
+    "latitude": {
+      "type": "decimal"
+    },
+    "longitude": {
+      "type": "decimal"
+    },
     "instagramHandle": {
       "type": "string"
     },

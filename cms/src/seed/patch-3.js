@@ -13,7 +13,6 @@ const DEFAULTS = {
   addressLabel: 'Address',
   hoursLabel: 'Hours',
   dressCodeLabel: 'Dress Code',
-  mapPlaceholderLabel: 'Jersey City, NJ',
   selectPlaceholder: 'Select',
   nameLabel: 'Full Name',
   namePlaceholder: 'Your name',

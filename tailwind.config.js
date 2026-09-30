@@ -29,7 +29,7 @@ module.exports = {
         onyx: '#080808',
         gold: '#C5A059',
         champagne: '#E6C280',
-        mutedGold: '#8A733E',
+        'muted-gold': '#8A733E',
         velvet: '#0B1B15',
       },
       fontFamily: {

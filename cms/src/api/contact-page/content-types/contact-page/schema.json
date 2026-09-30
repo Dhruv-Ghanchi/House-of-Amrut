@@ -34,7 +34,6 @@
     "addressLabel": { "type": "string" },
     "hoursLabel": { "type": "string" },
     "dressCodeLabel": { "type": "string" },
-    "mapPlaceholderLabel": { "type": "string" },
     "selectPlaceholder": { "type": "string" },
     "faqTitle": {
       "type": "string"

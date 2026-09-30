@@ -34,6 +34,19 @@ export async function strapiFetch(path, params) {
   return json.data;
 }
 
+export async function strapiCreate(path, data) {
+  const res = await fetch(`${STRAPI_URL}/api${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data }),
+  });
+  if (!res.ok) {
+    throw new Error(`Strapi request failed: ${path} (${res.status})`);
+  }
+  const json = await res.json();
+  return json.data;
+}
+
 // Populate shapes per content type — component fields need `true` to be
 // included at all; component fields that themselves hold media need an
 // explicit nested `populate`.

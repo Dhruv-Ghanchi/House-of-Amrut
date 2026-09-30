@@ -517,7 +517,6 @@ export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
       'api::contact-page.contact-page'
     > &
       Schema.Attribute.Private;
-    mapPlaceholderLabel: Schema.Attribute.String;
     nameLabel: Schema.Attribute.String;
     namePlaceholder: Schema.Attribute.String;
     notesLabel: Schema.Attribute.String;
@@ -612,6 +611,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     hours: Schema.Attribute.String;
     instagramHandle: Schema.Attribute.String;
     instagramUrl: Schema.Attribute.String;
+    latitude: Schema.Attribute.Decimal;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -619,6 +619,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images'>;
+    longitude: Schema.Attribute.Decimal;
     navLinks: Schema.Attribute.Component<'shared.cta-link', true>;
     publishedAt: Schema.Attribute.DateTime;
     reserveCtaLabel: Schema.Attribute.String &
@@ -796,6 +797,46 @@ export interface ApiLibraryPageLibraryPage extends Struct.SingleTypeSchema {
     vaultImage: Schema.Attribute.Media<'images'>;
     vaultText: Schema.Attribute.Text;
     vaultTitle: Schema.Attribute.String;
+  };
+}
+
+export interface ApiReservationReservation extends Struct.CollectionTypeSchema {
+  collectionName: 'reservations';
+  info: {
+    description: 'Reservation requests submitted from the Contact page';
+    displayName: 'Reservation';
+    pluralName: 'reservations';
+    singularName: 'reservation';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.String;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    experience: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::reservation.reservation'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    notes: Schema.Attribute.Text;
+    partySize: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<
+      ['pending', 'confirmed', 'cancelled']
+    > &
+      Schema.Attribute.DefaultTo<'pending'>;
+    time: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1403,6 +1444,7 @@ declare module '@strapi/strapi' {
       'api::journey.journey': ApiJourneyJourney;
       'api::journeys-page.journeys-page': ApiJourneysPageJourneysPage;
       'api::library-page.library-page': ApiLibraryPageLibraryPage;
+      'api::reservation.reservation': ApiReservationReservation;
       'api::tasting-room-page.tasting-room-page': ApiTastingRoomPageTastingRoomPage;
       'api::the-house-page.the-house-page': ApiTheHousePageTheHousePage;
       'plugin::content-releases.release': PluginContentReleasesRelease;

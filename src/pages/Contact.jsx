@@ -1,11 +1,32 @@
 import React, { useState } from "react";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import PageHero from "@/components/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
-import { strapiMediaUrl } from "@/lib/strapi";
+import { strapiMediaUrl, strapiCreate } from "@/lib/strapi";
 import { useContactPage, useGlobal } from "@/hooks/useCms";
 import { CmsLoading, CmsError } from "@/components/CmsState";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { ChevronDown, Clock, MapPin, User } from "lucide-react";
+
+// Fallback if the CMS global singleton doesn't have coordinates set yet —
+// geocoded from the venue address (136 Newark Avenue, Jersey City, NJ 07302).
+const FALLBACK_COORDS = [40.7204522, -74.0434354];
+
+// A gold teardrop pin matching the lucide MapPin used elsewhere on this page,
+// rendered as a divIcon instead of Leaflet's default marker images (those
+// resolve to relative asset paths that break under Vite's bundler).
+const goldPinIcon = L.divIcon({
+  className: "",
+  html: `<svg width="30" height="38" viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 6px rgba(197,160,89,0.55));">
+    <path d="M12 29C12 29 22 18.373 22 11C22 5.477 17.523 1 12 1C6.477 1 2 5.477 2 11C2 18.373 12 29 12 29Z" fill="#C5A059" stroke="#E6C280" stroke-width="1"/>
+    <circle cx="12" cy="11" r="4" fill="#080808"/>
+  </svg>`,
+  iconSize: [30, 38],
+  iconAnchor: [15, 38],
+  popupAnchor: [0, -34],
+});
 
 export default function Contact() {
   const { data: page, isLoading: pageLoading, isError: pageError } = useContactPage();
@@ -14,6 +35,8 @@ export default function Contact() {
     name: "", email: "", phone: "", date: "", time: "", party: "", experience: "", notes: "",
   });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [openFaq, setOpenFaq] = useState(-1);
   useDocumentMeta(page?.seo);
 
@@ -21,13 +44,36 @@ export default function Contact() {
   if (pageError || globalError || !page || !global) return <CmsError label="the Contact page" />;
 
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
-  const submit = (e) => { e.preventDefault(); setSent(true); };
+  const submit = async (e) => {
+    e.preventDefault();
+    setSubmitError("");
+    setSending(true);
+    try {
+      await strapiCreate("/reservations", {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        partySize: form.party,
+        date: form.date,
+        time: form.time,
+        experience: form.experience,
+        notes: form.notes,
+      });
+      setSent(true);
+    } catch (err) {
+      setSubmitError("Something went wrong submitting your request — please try again or call us directly.");
+    } finally {
+      setSending(false);
+    }
+  };
 
   const field = "w-full bg-transparent border-b border-gold/25 py-3 font-body text-sm text-champagne placeholder:text-muted-gold/60 focus:outline-none focus:border-gold transition-colors";
   const label = "font-heading text-[10px] uppercase tracking-luxe text-muted-gold mb-2 block";
   const partySizeOptions = page.partySizeOptions ?? [];
   const dateOptions = page.dateOptions ?? [];
   const experienceOptions = page.experienceOptions ?? [];
+  const lat = global.latitude ?? FALLBACK_COORDS[0];
+  const lng = global.longitude ?? FALLBACK_COORDS[1];
 
   return (
     <>
@@ -71,15 +117,23 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="mt-10 relative aspect-[16/10] bg-velvet border border-gold/15 overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin size={28} className="text-gold mx-auto mb-3" />
-                  <p className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold">{page.mapPlaceholderLabel}</p>
-                </div>
-              </div>
-              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(rgba(197,160,89,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.3) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+            {/* Map */}
+            <div className="mt-10 relative aspect-[16/10] border border-gold/15 overflow-hidden">
+              <MapContainer
+                center={[lat, lng]}
+                zoom={15}
+                scrollWheelZoom={false}
+                className="w-full h-full"
+              >
+                <TileLayer
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                  attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ"
+                />
+                <TileLayer
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}"
+                />
+                <Marker position={[lat, lng]} icon={goldPinIcon} />
+              </MapContainer>
             </div>
           </Reveal>
 
@@ -145,11 +199,16 @@ export default function Contact() {
                   <textarea value={form.notes} onChange={set("notes")} rows={3} placeholder={page.notesPlaceholder} className={field + " resize-none"} />
                 </div>
 
+                {submitError && (
+                  <p className="font-body text-sm text-gold">{submitError}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 font-heading text-[11px] uppercase tracking-luxe text-gold border border-gold-strong transition-all duration-500 hover:bg-gold hover:text-onyx hover:glow-amber"
+                  disabled={sending}
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 font-heading text-[11px] uppercase tracking-luxe text-gold border border-gold-strong transition-all duration-500 hover:bg-gold hover:text-onyx hover:glow-amber disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gold"
                 >
-                  {page.submitLabel}
+                  {sending ? "Sending…" : page.submitLabel}
                 </button>
               </form>
             )}
