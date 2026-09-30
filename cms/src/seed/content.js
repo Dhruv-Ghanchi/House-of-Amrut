@@ -132,10 +132,10 @@ module.exports = async function seedContent(strapi) {
       regionalPairingsText:
         'Regional plates composed to converse with the spirit. A map of India, told in four courses.',
       pairings: [
-        { region: 'North', image: img.dishNorth.id },
-        { region: 'East', image: img.dishEast.id },
-        { region: 'West', image: img.dishWest.id },
-        { region: 'South', image: img.dishSouth.id },
+        { region: 'North', dish: 'Three Cheese Mini Kulcha', image: img.dishNorth.id },
+        { region: 'East', dish: 'Chilli Paneer', image: img.dishEast.id },
+        { region: 'West', dish: 'Bombay Cutlet Pav', image: img.dishWest.id },
+        { region: 'South', dish: 'Curry Leaf Crispy Chicken', image: img.dishSouth.id },
       ],
       footerCtaEyebrow: 'Reservations',
       footerCtaTitle: 'The House Awaits.',
@@ -252,10 +252,10 @@ module.exports = async function seedContent(strapi) {
       pairingsEyebrow: 'Culinary Pairings',
       pairingsTitle: 'A Map of India, Paired',
       pairings: [
-        { region: 'North', whisky: 'Amrut Naarangi', image: img.dishNorth.id },
-        { region: 'East', whisky: 'Amrut Peated', image: img.dishEast.id },
-        { region: 'West', whisky: 'Amrut Indian Single Malt', image: img.dishWest.id },
-        { region: 'South', whisky: 'Amrut Cask Strength', image: img.dishSouth.id },
+        { region: 'North', dish: 'Three Cheese Mini Kulcha', whisky: 'Amrut Naarangi', image: img.dishNorth.id },
+        { region: 'East', dish: 'Chilli Paneer', whisky: 'Amrut Peated', image: img.dishEast.id },
+        { region: 'West', dish: 'Bombay Cutlet Pav', whisky: 'Amrut Indian Single Malt', image: img.dishWest.id },
+        { region: 'South', dish: 'Curry Leaf Crispy Chicken', whisky: 'Amrut Cask Strength', image: img.dishSouth.id },
       ],
     },
   });

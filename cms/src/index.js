@@ -8,6 +8,7 @@ const patch4RealBottles = require('./seed/patch-4-real-bottles');
 const patch5DedupeBottles = require('./seed/patch-5-dedupe-bottles');
 const patch6RealMenu = require('./seed/patch-6-real-menu');
 const patch7DishPhotos = require('./seed/patch-7-dish-photos');
+const patch8DishNames = require('./seed/patch-8-dish-names');
 
 module.exports = {
   register(/*{ strapi }*/) {},
@@ -61,6 +62,13 @@ module.exports = {
       await patch7DishPhotos(strapi);
     } catch (err) {
       strapi.log.error('[patch] Dish photo patch failed — fix and restart to retry.');
+      strapi.log.error(err);
+    }
+
+    try {
+      await patch8DishNames(strapi);
+    } catch (err) {
+      strapi.log.error('[patch] Dish name patch failed — fix and restart to retry.');
       strapi.log.error(err);
     }
   },

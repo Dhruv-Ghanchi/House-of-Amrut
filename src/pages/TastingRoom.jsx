@@ -201,8 +201,9 @@ export default function TastingRoom() {
                   </span>
                 </div>
                 <div className="px-5 py-5 border-t border-gold/15">
-                  <p className="font-body text-xs text-muted-gold uppercase tracking-luxe-sm">{page.pairedWithLabel}</p>
-                  <p className="font-heading text-sm text-champagne mt-1">{p.whisky}</p>
+                  <p className="font-heading uppercase tracking-luxe text-champagne text-base">{p.dish}</p>
+                  <p className="font-body text-xs text-muted-gold uppercase tracking-luxe-sm mt-3">{page.pairedWithLabel}</p>
+                  <p className="font-heading text-sm text-gold mt-1">{p.whisky}</p>
                 </div>
               </Reveal>
             ))}

@@ -104,6 +104,7 @@ export interface SharedPairing extends Struct.ComponentSchema {
     icon: 'utensils';
   };
   attributes: {
+    dish: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
     region: Schema.Attribute.String & Schema.Attribute.Required;
     whisky: Schema.Attribute.String;

@@ -43,9 +43,14 @@ export default function RegionalPairings({ page }) {
                 <div className="absolute inset-0 bg-onyx/40 group-hover:bg-onyx/20 transition-colors duration-500" />
               </div>
               <div className="flex items-center justify-between px-5 py-5 border-t border-gold/15">
-                <span className="font-heading uppercase tracking-luxe text-champagne text-sm">
-                  {r.region}
-                </span>
+                <div>
+                  <span className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold block mb-1">
+                    {r.region}
+                  </span>
+                  <span className="font-heading uppercase tracking-luxe text-champagne text-sm">
+                    {r.dish}
+                  </span>
+                </div>
                 <span className="font-heading text-[10px] uppercase tracking-luxe text-muted-gold">
                   0{i + 1}
                 </span>
