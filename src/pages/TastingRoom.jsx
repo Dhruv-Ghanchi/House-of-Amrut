@@ -165,12 +165,18 @@ export default function TastingRoom() {
             );
           })}
 
-          <Reveal className="text-center mt-12">
-            <button className="inline-flex items-center gap-3 px-8 py-3.5 font-heading text-[11px] uppercase tracking-luxe text-gold border border-gold-strong transition-all duration-500 hover:bg-gold hover:text-onyx">
-              <Download size={14} />
-              {page.downloadMenuLabel}
-            </button>
-          </Reveal>
+          {page.menuPdf && (
+            <Reveal className="text-center mt-12">
+              <a
+                href={strapiMediaUrl(page.menuPdf)}
+                download
+                className="inline-flex items-center gap-3 px-8 py-3.5 font-heading text-[11px] uppercase tracking-luxe text-gold border border-gold-strong transition-all duration-500 hover:bg-gold hover:text-onyx"
+              >
+                <Download size={14} />
+                {page.downloadMenuLabel}
+              </a>
+            </Reveal>
+          )}
         </div>
       </section>
 

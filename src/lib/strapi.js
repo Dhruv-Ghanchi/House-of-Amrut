@@ -79,6 +79,7 @@ export const POPULATE = {
     heroImage: true,
     pairings: { populate: { image: true } },
     menu: { populate: { items: true } },
+    menuPdf: true,
     seo: true,
   },
   libraryPage: { heroImage: true, vaultImage: true, seo: true },
