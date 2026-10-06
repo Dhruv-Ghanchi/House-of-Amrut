@@ -19,7 +19,6 @@ export default function SiteFooter() {
         className="pointer-events-none select-none absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-screen"
         src="/footer-smoke.mp4"
         autoPlay
-        loop
         muted
         playsInline
       />

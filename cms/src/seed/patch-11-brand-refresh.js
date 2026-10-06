@@ -1,9 +1,11 @@
 'use strict';
 
 // Swaps in the rebuilt brand assets: the gold-on-transparent logo (from the
-// vector logo rebuild) and a new hero background video. SVG is skipped for
-// the logo — plugins.js denies image/svg+xml uploads (XSS risk), so the
-// 4000px transparent PNG from the same export is used instead.
+// vector logo rebuild), a new hero background video, and a poster frame
+// extracted from that same video (so the poster never mismatches the video
+// mid-buffer, which otherwise looks like the old video briefly playing).
+// SVG is skipped for the logo — plugins.js denies image/svg+xml uploads
+// (XSS risk), so the 4000px transparent PNG from the same export is used.
 //
 // Gated by filename, not a global marker — each target is only skipped once
 // it already points to this exact file, so an owner who later swaps the
@@ -15,6 +17,7 @@ const fs = require('fs');
 
 const LOGO_PATH = path.join(__dirname, '..', '..', 'seed-assets', 'logo', 'house-of-amrut-logo-gold-transparent.png');
 const HERO_VIDEO_PATH = path.join(__dirname, '..', '..', 'seed-assets', 'hero', 'hero-video.mp4');
+const HERO_POSTER_PATH = path.join(__dirname, '..', '..', 'seed-assets', 'hero', 'hero-poster.jpg');
 
 async function uploadFile(strapi, filepath, mimetype) {
   const filename = path.basename(filepath);
@@ -59,7 +62,27 @@ async function setHeroVideo(strapi) {
   strapi.log.info('[patch] Set the new hero background video.');
 }
 
+// The poster shows while the video buffers — if it's a frame from a
+// different video than heroVideo, that mismatch reads as a glitchy swap
+// once playback starts. This is the new video's own first frame, so it
+// always matches.
+async function setHeroPoster(strapi) {
+  const filename = path.basename(HERO_POSTER_PATH);
+  const uid = 'api::home-page.home-page';
+  const page = await strapi.documents(uid).findFirst({ populate: { heroPoster: true } });
+  if (!page) return;
+  if (page.heroPoster?.name === filename) {
+    strapi.log.info('[patch] Hero poster already set — skipping.');
+    return;
+  }
+
+  const fileId = await uploadFile(strapi, HERO_POSTER_PATH, 'image/jpeg');
+  await strapi.documents(uid).update({ documentId: page.documentId, status: 'published', data: { heroPoster: fileId } });
+  strapi.log.info('[patch] Set the hero poster to match the new video.');
+}
+
 module.exports = async function patch11BrandRefresh(strapi) {
   await setLogo(strapi);
   await setHeroVideo(strapi);
+  await setHeroPoster(strapi);
 };
