@@ -13,17 +13,6 @@ export default function SiteFooter() {
 
   return (
     <footer className="relative bg-onyx border-t border-gold/15 overflow-hidden">
-      {/* Smoke/fume video — mix-blend-mode screens out the black background,
-          leaving only the white smoke visible over the onyx footer. */}
-      <video
-        className="pointer-events-none select-none absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
-        src="/footer-smoke.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-      />
-
       <div className="relative mx-auto max-w-luxe px-6 lg:px-10 pt-20 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}

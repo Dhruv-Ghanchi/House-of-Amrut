@@ -17,7 +17,7 @@ const fs = require('fs');
 
 const LOGO_PATH = path.join(__dirname, '..', '..', 'seed-assets', 'logo', 'house-of-amrut-logo-gold-transparent.png');
 const HERO_VIDEO_PATH = path.join(__dirname, '..', '..', 'seed-assets', 'hero', 'hero-video.mp4');
-const HERO_POSTER_PATH = path.join(__dirname, '..', '..', 'seed-assets', 'hero', 'hero-poster.jpg');
+const HERO_POSTER_PATH = path.join(__dirname, '..', '..', 'seed-assets', 'hero', 'hero-poster-v2.jpg');
 
 async function uploadFile(strapi, filepath, mimetype) {
   const filename = path.basename(filepath);
