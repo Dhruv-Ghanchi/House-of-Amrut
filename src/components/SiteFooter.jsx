@@ -16,9 +16,10 @@ export default function SiteFooter() {
       {/* Smoke/fume video — mix-blend-mode screens out the black background,
           leaving only the white smoke visible over the onyx footer. */}
       <video
-        className="pointer-events-none select-none absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-screen"
+        className="pointer-events-none select-none absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
         src="/footer-smoke.mp4"
         autoPlay
+        loop
         muted
         playsInline
       />
