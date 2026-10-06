@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import PageHero from "@/components/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { strapiMediaUrl, strapiCreate } from "@/lib/strapi";
@@ -13,20 +10,6 @@ import { ChevronDown, Clock, MapPin, User } from "lucide-react";
 // Fallback if the CMS global singleton doesn't have coordinates set yet —
 // geocoded from the venue address (136 Newark Avenue, Jersey City, NJ 07302).
 const FALLBACK_COORDS = [40.7204522, -74.0434354];
-
-// A gold teardrop pin matching the lucide MapPin used elsewhere on this page,
-// rendered as a divIcon instead of Leaflet's default marker images (those
-// resolve to relative asset paths that break under Vite's bundler).
-const goldPinIcon = L.divIcon({
-  className: "",
-  html: `<svg width="30" height="38" viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 6px rgba(197,160,89,0.55));">
-    <path d="M12 29C12 29 22 18.373 22 11C22 5.477 17.523 1 12 1C6.477 1 2 5.477 2 11C2 18.373 12 29 12 29Z" fill="#C5A059" stroke="#E6C280" stroke-width="1"/>
-    <circle cx="12" cy="11" r="4" fill="#080808"/>
-  </svg>`,
-  iconSize: [30, 38],
-  iconAnchor: [15, 38],
-  popupAnchor: [0, -34],
-});
 
 export default function Contact() {
   const { data: page, isLoading: pageLoading, isError: pageError } = useContactPage();
@@ -119,21 +102,13 @@ export default function Contact() {
 
             {/* Map */}
             <div className="mt-10 relative aspect-[16/10] border border-gold/15 overflow-hidden">
-              <MapContainer
-                center={[lat, lng]}
-                zoom={15}
-                scrollWheelZoom={false}
-                className="w-full h-full"
-              >
-                <TileLayer
-                  url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-                  attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ"
-                />
-                <TileLayer
-                  url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}"
-                />
-                <Marker position={[lat, lng]} icon={goldPinIcon} />
-              </MapContainer>
+              <iframe
+                title="House of Amrut location"
+                src={`https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`}
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </Reveal>
 
@@ -184,7 +159,18 @@ export default function Contact() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div><label className={label}>{page.timeLabel}</label><input type="time" value={form.time} onChange={set("time")} className={field + " [color-scheme:dark]"} /></div>
+                  <div>
+                    <label className={label}>{page.timeLabel}</label>
+                    <div className="relative">
+                      <input
+                        type="time"
+                        value={form.time}
+                        onChange={set("time")}
+                        className={field + " [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:opacity-0"}
+                      />
+                      <Clock size={16} className="absolute right-0 top-1/2 -translate-y-1/2 text-gold pointer-events-none" />
+                    </div>
+                  </div>
                   <div>
                     <label className={label}>{page.experienceLabel}</label>
                     <select value={form.experience} onChange={set("experience")} className={field + " appearance-none"}>
