@@ -13,20 +13,16 @@ export default function SiteFooter() {
 
   return (
     <footer className="relative bg-onyx border-t border-gold/15 overflow-hidden">
-      {/* Smoke/fume plumes drifting up from the bottom edge */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <span className="smoke-plume" style={{ left: "8%", bottom: "-10%", width: 260, height: 260, animationDuration: "16s", animationDelay: "0s", "--smoke-drift": "8%" }} />
-        <span className="smoke-plume" style={{ left: "38%", bottom: "-15%", width: 320, height: 320, animationDuration: "21s", animationDelay: "4s", "--smoke-drift": "-6%" }} />
-        <span className="smoke-plume" style={{ left: "66%", bottom: "-8%", width: 240, height: 240, animationDuration: "18s", animationDelay: "9s", "--smoke-drift": "5%" }} />
-        <span className="smoke-plume" style={{ left: "88%", bottom: "-12%", width: 220, height: 220, animationDuration: "23s", animationDelay: "2s", "--smoke-drift": "-9%" }} />
-      </div>
-
-      {/* Massive logotype anchor */}
-      <div className="pointer-events-none select-none absolute inset-x-0 bottom-[-2vw] flex justify-center">
-        <span className="font-heading text-[18vw] leading-none tracking-luxe text-gold/[0.04] whitespace-nowrap">
-          {global.siteName}
-        </span>
-      </div>
+      {/* Smoke/fume video — mix-blend-mode screens out the black background,
+          leaving only the white smoke visible over the onyx footer. */}
+      <video
+        className="pointer-events-none select-none absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-screen"
+        src="/footer-smoke.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
 
       <div className="relative mx-auto max-w-luxe px-6 lg:px-10 pt-20 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
