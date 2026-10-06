@@ -5,13 +5,18 @@
 // Three Cheese Mini Kulcha (North), Chilli Paneer (East), Bombay Cutlet Pav
 // (West), Curry Leaf Crispy Chicken (South). Updates both the Home page's
 // and the Tasting Room page's regional pairing sections, since both reuse
-// the same four region slots. Guarded by filename so this only runs once.
+// the same four region slots.
+//
+// Gated per-pairing (image still null), not by a single global marker —
+// an earlier version skipped forever once any upload with the marker name
+// existed, even on runs where the page update silently never attached the
+// photo id. This version re-checks on every boot and backfills whatever is
+// still missing, so it heals itself regardless of what happened before.
 
 const path = require('path');
 const fs = require('fs');
 
 const DISH_PHOTOS_DIR = path.join(__dirname, '..', '..', 'seed-assets', 'dish-photos');
-const MARKER_FILENAME = 'north-three-cheese-kulcha.png';
 
 const DISH_PHOTOS = {
   North: 'north-three-cheese-kulcha.png',
@@ -35,55 +40,53 @@ async function uploadPhoto(strapi, filename) {
     data: {},
     files: fileEntry(filename),
   });
-  return uploaded;
+  // Fall back to a fresh DB lookup if the upload service's return shape
+  // ever fails to hand back a usable id — this is what let photo ids
+  // silently evaporate into null images last time.
+  if (uploaded?.id) return uploaded.id;
+  const found = await strapi.query('plugin::upload.file').findOne({ where: { name: filename } });
+  if (!found) throw new Error(`[patch] Upload of ${filename} did not produce a usable file id.`);
+  return found.id;
 }
 
 module.exports = async function patch7DishPhotos(strapi) {
-  const already = await strapi.query('plugin::upload.file').findOne({ where: { name: MARKER_FILENAME } });
-  if (already) {
-    strapi.log.info('[patch] Real dish photos already loaded — skipping.');
-    return;
-  }
-
-  strapi.log.info('[patch] Uploading real dish photos…');
   const photoIds = {};
-  for (const [region, filename] of Object.entries(DISH_PHOTOS)) {
-    const uploaded = await uploadPhoto(strapi, filename);
-    photoIds[region] = uploaded.id;
-    strapi.log.info(`[patch] Uploaded dish photo: ${region} (${filename})`);
+  async function getPhotoId(region) {
+    if (photoIds[region]) return photoIds[region];
+    const filename = DISH_PHOTOS[region];
+    const existing = await strapi.query('plugin::upload.file').findOne({ where: { name: filename } });
+    photoIds[region] = existing ? existing.id : await uploadPhoto(strapi, filename);
+    return photoIds[region];
   }
 
-  const tastingRoomUid = 'api::tasting-room-page.tasting-room-page';
-  const tastingRoomPage = await strapi.documents(tastingRoomUid).findFirst({ populate: { pairings: true } });
-  if (tastingRoomPage?.pairings?.length) {
-    const pairings = tastingRoomPage.pairings.map((p) => ({
+  const targets = [
+    { uid: 'api::tasting-room-page.tasting-room-page', withWhisky: true },
+    { uid: 'api::home-page.home-page', withWhisky: false },
+  ];
+
+  for (const { uid, withWhisky } of targets) {
+    const page = await strapi.documents(uid).findFirst({ populate: { pairings: true } });
+    if (!page?.pairings?.length) continue;
+
+    const missing = page.pairings.filter((p) => !p.image);
+    if (!missing.length) {
+      strapi.log.info(`[patch] Dish photos already present on ${uid} — skipping.`);
+      continue;
+    }
+
+    const pairings = await Promise.all(page.pairings.map(async (p) => ({
       id: p.id,
       region: p.region,
-      whisky: p.region === 'West' ? WEST_WHISKY : p.whisky,
-      image: photoIds[p.region] ?? p.image,
-    }));
-    await strapi.documents(tastingRoomUid).update({
-      documentId: tastingRoomPage.documentId,
+      dish: p.dish,
+      whisky: withWhisky && p.region === 'West' ? WEST_WHISKY : p.whisky,
+      image: p.image ?? await getPhotoId(p.region),
+    })));
+
+    await strapi.documents(uid).update({
+      documentId: page.documentId,
       status: 'published',
       data: { pairings },
     });
-    strapi.log.info('[patch] Updated tasting-room-page pairing photos.');
-  }
-
-  const homeUid = 'api::home-page.home-page';
-  const homePage = await strapi.documents(homeUid).findFirst({ populate: { pairings: true } });
-  if (homePage?.pairings?.length) {
-    const pairings = homePage.pairings.map((p) => ({
-      id: p.id,
-      region: p.region,
-      whisky: p.whisky,
-      image: photoIds[p.region] ?? p.image,
-    }));
-    await strapi.documents(homeUid).update({
-      documentId: homePage.documentId,
-      status: 'published',
-      data: { pairings },
-    });
-    strapi.log.info('[patch] Updated home-page pairing photos.');
+    strapi.log.info(`[patch] Backfilled dish photos on ${uid}.`);
   }
 };

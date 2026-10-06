@@ -10,6 +10,7 @@ const patch6RealMenu = require('./seed/patch-6-real-menu');
 const patch7DishPhotos = require('./seed/patch-7-dish-photos');
 const patch8DishNames = require('./seed/patch-8-dish-names');
 const patch9MapCoordinates = require('./seed/patch-9-map-coordinates');
+const patch10MenuPdf = require('./seed/patch-10-menu-pdf');
 
 module.exports = {
   register(/*{ strapi }*/) {},
@@ -77,6 +78,13 @@ module.exports = {
       await patch9MapCoordinates(strapi);
     } catch (err) {
       strapi.log.error('[patch] Map coordinates patch failed — fix and restart to retry.');
+      strapi.log.error(err);
+    }
+
+    try {
+      await patch10MenuPdf(strapi);
+    } catch (err) {
+      strapi.log.error('[patch] Menu PDF patch failed — fix and restart to retry.');
       strapi.log.error(err);
     }
   },
