@@ -94,6 +94,23 @@
 
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .smoke-plume {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(197,160,89,0.55), transparent 70%);
+    filter: blur(30px);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: smoke-rise linear infinite;
+  }
+}
+
+@keyframes smoke-rise {
+  0% { transform: translate(0, 15%) scale(1); opacity: 0; }
+  20% { opacity: 0.18; }
+  65% { opacity: 0.1; }
+  100% { transform: translate(var(--smoke-drift, 6%), -140%) scale(1.7); opacity: 0; }
 }
 
 /* Custom scrollbar */
@@ -101,18 +118,3 @@
 ::-webkit-scrollbar-track { background: #080808; }
 ::-webkit-scrollbar-thumb { background: rgba(197,160,89,0.25); border-radius: 0; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(197,160,89,0.45); }
-
-/* Leaflet map (Contact page) — align the control chrome with the theme */
-.leaflet-container { background: #0B1B15; font-family: 'Inter', sans-serif; }
-.leaflet-control-zoom a {
-  background: #080808 !important;
-  color: #C5A059 !important;
-  border-color: rgba(197,160,89,0.2) !important;
-}
-.leaflet-control-zoom a:hover { background: rgba(197,160,89,0.15) !important; }
-.leaflet-control-attribution {
-  background: rgba(8,8,8,0.75) !important;
-  color: #8A733E !important;
-  font-size: 9px !important;
-}
-.leaflet-control-attribution a { color: #8A733E !important; }

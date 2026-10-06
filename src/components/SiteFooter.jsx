@@ -13,6 +13,14 @@ export default function SiteFooter() {
 
   return (
     <footer className="relative bg-onyx border-t border-gold/15 overflow-hidden">
+      {/* Smoke/fume plumes drifting up from the bottom edge */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <span className="smoke-plume" style={{ left: "8%", bottom: "-10%", width: 260, height: 260, animationDuration: "16s", animationDelay: "0s", "--smoke-drift": "8%" }} />
+        <span className="smoke-plume" style={{ left: "38%", bottom: "-15%", width: 320, height: 320, animationDuration: "21s", animationDelay: "4s", "--smoke-drift": "-6%" }} />
+        <span className="smoke-plume" style={{ left: "66%", bottom: "-8%", width: 240, height: 240, animationDuration: "18s", animationDelay: "9s", "--smoke-drift": "5%" }} />
+        <span className="smoke-plume" style={{ left: "88%", bottom: "-12%", width: 220, height: 220, animationDuration: "23s", animationDelay: "2s", "--smoke-drift": "-9%" }} />
+      </div>
+
       {/* Massive logotype anchor */}
       <div className="pointer-events-none select-none absolute inset-x-0 bottom-[-2vw] flex justify-center">
         <span className="font-heading text-[18vw] leading-none tracking-luxe text-gold/[0.04] whitespace-nowrap">
