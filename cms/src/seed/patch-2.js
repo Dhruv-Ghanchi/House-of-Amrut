@@ -43,10 +43,6 @@ const SEO_DEFAULTS = {
     metaTitle: 'The Spirits Library | House of Amrut',
     metaDescription: 'A vault of rare and exceptional Indian single malt, poured by the dram or by appointment.',
   },
-  'journeys-page': {
-    metaTitle: 'Curated Journeys | House of Amrut',
-    metaDescription: "Four guided tasting flights through Amrut's single malts, narrated by the sommelier.",
-  },
   'contact-page': {
     metaTitle: 'Contact & Reservations | House of Amrut',
     metaDescription: 'Reserve your table at House of Amrut in Jersey City, NJ. Hours, dress code and answers before you arrive.',
@@ -87,16 +83,6 @@ async function patchPageSeo(strapi) {
 }
 
 async function patchMissedLabels(strapi) {
-  const journeysPage = await strapi.documents('api::journeys-page.journeys-page').findFirst();
-  if (journeysPage && !journeysPage.reserveCtaLabel) {
-    await strapi.documents('api::journeys-page.journeys-page').update({
-      documentId: journeysPage.documentId,
-      status: 'published',
-      data: { reserveCtaLabel: 'Reserve This Journey' },
-    });
-    strapi.log.info('[patch] Set journeys-page.reserveCtaLabel');
-  }
-
   const tastingRoomPage = await strapi.documents('api::tasting-room-page.tasting-room-page').findFirst();
   if (tastingRoomPage && !tastingRoomPage.pairedWithLabel) {
     await strapi.documents('api::tasting-room-page.tasting-room-page').update({

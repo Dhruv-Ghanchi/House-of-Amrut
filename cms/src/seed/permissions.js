@@ -9,11 +9,10 @@ const SINGLE_TYPES = [
   'experiences-page',
   'tasting-room-page',
   'library-page',
-  'journeys-page',
   'contact-page',
 ];
 
-const COLLECTION_TYPES = ['bottle', 'journey'];
+const COLLECTION_TYPES = ['bottle'];
 
 // Publicly creatable but not publicly listable/readable — the reservation
 // form submits here, but submissions should only be visible in the admin.

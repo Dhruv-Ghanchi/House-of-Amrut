@@ -6,7 +6,6 @@ const fs = require('fs');
 const SEED_ASSETS = path.join(__dirname, '..', '..', 'seed-assets');
 const IMAGES_DIR = path.join(SEED_ASSETS, 'images');
 const VIDEOS_DIR = path.join(SEED_ASSETS, 'videos');
-const ICONS_DIR = path.join(SEED_ASSETS, 'icons');
 const DISH_PHOTOS_DIR = path.join(SEED_ASSETS, 'dish-photos');
 
 const MIME = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', svg: 'image/svg+xml', mp4: 'video/mp4' };
@@ -44,7 +43,6 @@ module.exports = async function seedContent(strapi) {
     experiencesHero: 'experiencesHero.jpg',
     tastingRoomHero: 'tastingRoomHero.jpg',
     libraryHero: 'libraryHero.jpg',
-    journeysHero: 'journeysHero.jpg',
     contactHero: 'contactHero.jpg',
     loungeInterior: 'loungeInterior.jpg',
     privateBooth: 'privateBooth.jpg',
@@ -81,7 +79,6 @@ module.exports = async function seedContent(strapi) {
         { label: 'Experiences', url: '/experiences' },
         { label: 'Tasting Room', url: '/tasting-room' },
         { label: 'Library', url: '/library' },
-        { label: 'Journeys', url: '/journeys' },
         { label: 'Contact', url: '/contact' },
       ],
       address: 'BLJC, 136 Newark Avenue, Jersey City, NJ 07302',
@@ -125,8 +122,6 @@ module.exports = async function seedContent(strapi) {
       tablesideRightImage: img.tablesideCocktail.id,
       tablesideQuote:
         'Where the mixologist becomes the storyteller, and every pour is performed in the glow of candlelight.',
-      curatedJourneysEyebrow: 'Guided Flights',
-      curatedJourneysTitle: 'Curated Journeys',
       regionalPairingsEyebrow: 'The Table',
       regionalPairingsTitle: 'From India, With Intent.',
       regionalPairingsText:
@@ -277,21 +272,6 @@ module.exports = async function seedContent(strapi) {
     },
   });
 
-  strapi.log.info('[seed] Writing Journeys page…');
-  await strapi.documents('api::journeys-page.journeys-page').create({
-    status: 'published',
-    data: {
-      heroEyebrow: 'Journeys',
-      heroTitle: 'Curated Journeys',
-      heroSubtitle: 'Four guided tasting flights, narrated by the sommelier.',
-      heroImage: img.journeysHero.id,
-      sectionEyebrow: 'Flight Selection',
-      sectionTitle: 'Four Routes Through the Spirit',
-      quoteText:
-        '"Each journey is guided. The sommelier pours, and the story follows. You are not drinking; you are listening."',
-    },
-  });
-
   strapi.log.info('[seed] Writing Contact page…');
   await strapi.documents('api::contact-page.contact-page').create({
     status: 'published',
@@ -340,22 +320,6 @@ module.exports = async function seedContent(strapi) {
     await strapi.documents('api::bottle.bottle').create({
       status: 'published',
       data: { ...b, image: img.bottlePlinth.id },
-    });
-  }
-
-  strapi.log.info('[seed] Writing journeys…');
-  const journeys = [
-    { name: 'The Innovators', description: 'Exploring pioneering wood finishes: ex-bourbon, ex-sherry, and the experimental casks that rewrote what Indian malt could be.', duration: '60 min', pours: '4 × 15ml', price: '₹4,500 / person', order: 1, iconFile: 'innovators.svg' },
-    { name: "The Angel's Share", description: 'A focus on rapid tropical maturation, and how heat, humidity and time compress decades of flavour into a few intense years.', duration: '60 min', pours: '4 × 15ml', price: '₹5,200 / person', order: 2, iconFile: 'angels-share.svg' },
-    { name: 'Land & Time', description: 'A terroir-focused flight tracing Indian barley origins, from the northern plains to the southern coast, in four glasses.', duration: '60 min', pours: '4 × 15ml', price: '₹4,800 / person', order: 3, iconFile: 'land-time.svg' },
-    { name: 'The Rare & Exceptional', description: 'Poured from cask-strength and limited allocations: bottles that exist in handfuls, opened only for those who journey here.', duration: '75 min', pours: '4 × 15ml', price: '₹7,500 / person', order: 4, iconFile: 'rare-exceptional.svg' },
-  ];
-  for (const j of journeys) {
-    const { iconFile, ...data } = j;
-    const icon = await uploadAsset(strapi, ICONS_DIR, iconFile);
-    await strapi.documents('api::journey.journey').create({
-      status: 'published',
-      data: { ...data, icon: icon.id },
     });
   }
 

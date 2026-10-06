@@ -87,12 +87,6 @@
     "tablesideQuote": {
       "type": "text"
     },
-    "curatedJourneysEyebrow": {
-      "type": "string"
-    },
-    "curatedJourneysTitle": {
-      "type": "string"
-    },
     "regionalPairingsEyebrow": {
       "type": "string"
     },

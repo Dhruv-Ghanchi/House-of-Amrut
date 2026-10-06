@@ -12,6 +12,7 @@ const patch8DishNames = require('./seed/patch-8-dish-names');
 const patch9MapCoordinates = require('./seed/patch-9-map-coordinates');
 const patch10MenuPdf = require('./seed/patch-10-menu-pdf');
 const patch11BrandRefresh = require('./seed/patch-11-brand-refresh');
+const patch12RemoveJourneys = require('./seed/patch-12-remove-journeys');
 
 module.exports = {
   register(/*{ strapi }*/) {},
@@ -93,6 +94,13 @@ module.exports = {
       await patch11BrandRefresh(strapi);
     } catch (err) {
       strapi.log.error('[patch] Brand refresh patch failed — fix and restart to retry.');
+      strapi.log.error(err);
+    }
+
+    try {
+      await patch12RemoveJourneys(strapi);
+    } catch (err) {
+      strapi.log.error('[patch] Remove-journeys patch failed — fix and restart to retry.');
       strapi.log.error(err);
     }
   },

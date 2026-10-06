@@ -32,11 +32,7 @@ export const useTheHousePage = () => useSingleType("the-house-page", "/the-house
 export const useExperiencesPage = () => useSingleType("experiences-page", "/experiences-page", POPULATE.experiencesPage);
 export const useTastingRoomPage = () => useSingleType("tasting-room-page", "/tasting-room-page", POPULATE.tastingRoomPage);
 export const useLibraryPage = () => useSingleType("library-page", "/library-page", POPULATE.libraryPage);
-export const useJourneysPage = () => useSingleType("journeys-page", "/journeys-page", POPULATE.journeysPage);
 export const useContactPage = () => useSingleType("contact-page", "/contact-page", POPULATE.contactPage);
 
 export const useBottles = () =>
   useCollectionType("bottles", "/bottles", { populate: POPULATE.bottle, "pagination[pageSize]": 100, sort: "id:asc" });
-
-export const useJourneys = () =>
-  useCollectionType("journeys", "/journeys", { populate: POPULATE.journey, "pagination[pageSize]": 100, sort: "order:asc" });

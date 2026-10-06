@@ -10,7 +10,6 @@ import TheHouse from '@/pages/TheHouse';
 import Experiences from '@/pages/Experiences';
 import TastingRoom from '@/pages/TastingRoom';
 import Library from '@/pages/Library';
-import Journeys from '@/pages/Journeys';
 import Contact from '@/pages/Contact';
 // Add page imports here
 
@@ -26,7 +25,6 @@ function App() {
             <Route path="/experiences" element={<Experiences />} />
             <Route path="/tasting-room" element={<TastingRoom />} />
             <Route path="/library" element={<Library />} />
-            <Route path="/journeys" element={<Journeys />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />

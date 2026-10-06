@@ -83,7 +83,6 @@ export const POPULATE = {
     seo: true,
   },
   libraryPage: { heroImage: true, vaultImage: true, seo: true },
-  journeysPage: { heroImage: true, seo: true },
   contactPage: {
     heroImage: true,
     faq: true,
@@ -93,5 +92,4 @@ export const POPULATE = {
     experienceOptions: true,
   },
   bottle: { image: true, profile: true },
-  journey: { icon: true },
 };
